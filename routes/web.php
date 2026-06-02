@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AchatController;
+use App\Http\Controllers\Admin\AffiliationCodeController;
 use App\Http\Controllers\Admin\CommandeController;
 use App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\Admin\TagController;
@@ -34,6 +35,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/users', [UserController::class, 'index'])->name('admin.users');
         Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
         Route::patch('/users/{user}/role', [UserController::class, 'toggleRole'])->name('admin.users.role');
+
+        Route::get('/codes', [AffiliationCodeController::class, 'index'])->name('admin.codes');
+        Route::post('/codes', [AffiliationCodeController::class, 'store'])->name('admin.codes.store');
+        Route::delete('/codes/{affiliationCode}', [AffiliationCodeController::class, 'destroy'])->name('admin.codes.destroy');
 
         Route::get('/commandes', [CommandeController::class, 'index'])->name('admin.commandes');
         Route::post('/commandes/{commande}/valider', [CommandeController::class, 'valider'])->name('admin.commandes.valider');

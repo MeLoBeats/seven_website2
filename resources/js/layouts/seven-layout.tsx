@@ -1,5 +1,5 @@
 import { Link, router, usePage } from '@inertiajs/react';
-import { ClipboardList, ShieldCheck, ShoppingBag, ShoppingCart, User, Users } from 'lucide-react';
+import { ClipboardList, KeyRound, ShieldCheck, ShoppingBag, ShoppingCart, User, Users } from 'lucide-react';
 import { type ReactNode } from 'react';
 
 import type { SharedData } from '@/types';
@@ -94,6 +94,9 @@ export default function SevenLayout({ children, title }: SevenLayoutProps) {
                             </NavLink>
                             <NavLink href={route('admin.items')} active={currentPath === '/admin/items'} icon={<ShieldCheck size={14} />}>
                                 Articles
+                            </NavLink>
+                            <NavLink href={route('admin.codes')} active={currentPath === '/admin/codes'} icon={<KeyRound size={14} />}>
+                                Codes
                             </NavLink>
                         </>
                     )}
