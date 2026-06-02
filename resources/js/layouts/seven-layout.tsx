@@ -1,5 +1,5 @@
 import { Link, router, usePage } from '@inertiajs/react';
-import { ShieldCheck, ShoppingBag, ShoppingCart, User, Users } from 'lucide-react';
+import { ClipboardList, ShieldCheck, ShoppingBag, ShoppingCart, User, Users } from 'lucide-react';
 import { type ReactNode } from 'react';
 
 import type { SharedData } from '@/types';
@@ -9,20 +9,28 @@ interface NavLinkProps {
     active: boolean;
     children: ReactNode;
     icon: ReactNode;
+    badge?: number;
 }
 
-function NavLink({ href, active, children, icon }: NavLinkProps) {
+function NavLink({ href, active, children, icon, badge }: NavLinkProps) {
     return (
         <Link
             href={href}
-            className={`flex items-center gap-2 px-3 py-2 text-sm uppercase tracking-widest transition-all ${
+            className={`flex items-center justify-between px-3 py-2 text-sm uppercase tracking-widest transition-all ${
                 active
                     ? 'border-l-2 border-[#00ff41] text-[#00ff41]'
                     : 'border-l-2 border-transparent text-[#666] hover:border-[#333] hover:text-[#999]'
             }`}
         >
-            <span className="h-3.5 w-3.5">{icon}</span>
-            {children}
+            <span className="flex items-center gap-2">
+                <span className="h-3.5 w-3.5">{icon}</span>
+                {children}
+            </span>
+            {badge != null && badge > 0 && (
+                <span className="rounded-none bg-[#cc0000] px-1.5 py-0.5 text-[9px] font-bold text-white">
+                    {badge}
+                </span>
+            )}
         </Link>
     );
 }
@@ -33,7 +41,7 @@ interface SevenLayoutProps {
 }
 
 export default function SevenLayout({ children, title }: SevenLayoutProps) {
-    const { auth } = usePage<SharedData>().props;
+    const { auth, nb_commandes_attente } = usePage<SharedData>().props;
     const user = auth.user;
     const currentPath = window.location.pathname;
 
@@ -63,6 +71,9 @@ export default function SevenLayout({ children, title }: SevenLayoutProps) {
                     <NavLink href={route('achat')} active={currentPath === '/achat'} icon={<ShoppingCart size={14} />}>
                         Achat
                     </NavLink>
+                    <NavLink href={route('panier')} active={currentPath === '/panier'} icon={<ClipboardList size={14} />}>
+                        Panier
+                    </NavLink>
                     <NavLink href={route('vente')} active={currentPath === '/vente'} icon={<ShoppingBag size={14} />}>
                         Vente
                     </NavLink>
@@ -70,6 +81,14 @@ export default function SevenLayout({ children, title }: SevenLayoutProps) {
                     {user?.role === 'admin' && (
                         <>
                             <span className="mt-4 px-3 py-1 text-[10px] tracking-[0.3em] text-[#333]">// ADMIN</span>
+                            <NavLink
+                                href={route('admin.commandes')}
+                                active={currentPath === '/admin/commandes'}
+                                icon={<ClipboardList size={14} />}
+                                badge={nb_commandes_attente}
+                            >
+                                Commandes
+                            </NavLink>
                             <NavLink href={route('admin.users')} active={currentPath === '/admin/users'} icon={<Users size={14} />}>
                                 Invités
                             </NavLink>

@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\AchatController;
+use App\Http\Controllers\Admin\CommandeController;
 use App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\GestionController;
+use App\Http\Controllers\PanierController;
 use App\Http\Controllers\VenteController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -22,10 +24,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/achat', [AchatController::class, 'index'])->name('achat');
     Route::get('/vente', [VenteController::class, 'index'])->name('vente');
 
+    Route::get('/panier', [PanierController::class, 'index'])->name('panier');
+    Route::post('/panier/items/{item}', [PanierController::class, 'ajouter'])->name('panier.ajouter');
+    Route::delete('/panier/items/{commandeItem}', [PanierController::class, 'retirer'])->name('panier.retirer');
+    Route::post('/panier/valider', [PanierController::class, 'valider'])->name('panier.valider');
+
     Route::middleware(['admin'])->prefix('admin')->group(function () {
         Route::get('/users', [UserController::class, 'index'])->name('admin.users');
         Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
         Route::patch('/users/{user}/role', [UserController::class, 'toggleRole'])->name('admin.users.role');
+
+        Route::get('/commandes', [CommandeController::class, 'index'])->name('admin.commandes');
+        Route::post('/commandes/{commande}/valider', [CommandeController::class, 'valider'])->name('admin.commandes.valider');
+        Route::post('/commandes/{commande}/refuser', [CommandeController::class, 'refuser'])->name('admin.commandes.refuser');
 
         Route::get('/items', [ItemController::class, 'index'])->name('admin.items');
         Route::post('/items', [ItemController::class, 'store'])->name('admin.items.store');

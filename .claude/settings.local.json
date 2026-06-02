@@ -3,7 +3,9 @@
     "allow": [
       "PowerShell(cd \"C:\\\\Users\\\\liam.ghoggal\\\\Documents\\\\dev\\\\seven_website\"; Get-ChildItem -Path . -Recurse -Force -ErrorAction SilentlyContinue | Select-Object -First 150 FullName | ForEach-Object { $_ -replace [regex]::Escape\\(\"C:\\\\Users\\\\liam.ghoggal\\\\Documents\\\\dev\\\\seven_website\"\\), \".\" } | Sort-Object)",
       "Bash(php artisan *)",
-      "mcp__laravel-boost__search-docs"
+      "mcp__laravel-boost__search-docs",
+      "Bash(vendor/bin/pint --dirty --format agent)",
+      "Bash(npm run *)"
     ]
   }
 }
