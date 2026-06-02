@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(cd \"C:\\\\Users\\\\liam.ghoggal\\\\Documents\\\\dev\\\\seven_website\"; Get-ChildItem -Path . -Recurse -Force -ErrorAction SilentlyContinue | Select-Object -First 150 FullName | ForEach-Object { $_ -replace [regex]::Escape\\(\"C:\\\\Users\\\\liam.ghoggal\\\\Documents\\\\dev\\\\seven_website\"\\), \".\" } | Sort-Object)",
+      "Bash(php artisan *)"
+    ]
+  }
+}
