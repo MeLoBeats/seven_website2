@@ -26,6 +26,7 @@ export interface SharedData {
     quote: { message: string; author: string };
     auth: Auth;
     nb_commandes_attente: number;
+    nb_panier: number;
     [key: string]: unknown;
 }
 

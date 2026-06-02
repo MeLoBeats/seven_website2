@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/panier', [PanierController::class, 'index'])->name('panier');
     Route::post('/panier/items/{item}', [PanierController::class, 'ajouter'])->name('panier.ajouter');
+    Route::patch('/panier/items/{commandeItem}', [PanierController::class, 'majQuantite'])->name('panier.quantite');
     Route::delete('/panier/items/{commandeItem}', [PanierController::class, 'retirer'])->name('panier.retirer');
     Route::post('/panier/valider', [PanierController::class, 'valider'])->name('panier.valider');
 

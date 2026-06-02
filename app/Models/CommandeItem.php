@@ -17,6 +17,11 @@ class CommandeItem extends Model
         ];
     }
 
+    public function commande(): BelongsTo
+    {
+        return $this->belongsTo(Commande::class);
+    }
+
     public function item(): BelongsTo
     {
         return $this->belongsTo(Item::class);

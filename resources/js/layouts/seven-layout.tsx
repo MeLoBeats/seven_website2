@@ -41,7 +41,7 @@ interface SevenLayoutProps {
 }
 
 export default function SevenLayout({ children, title }: SevenLayoutProps) {
-    const { auth, nb_commandes_attente } = usePage<SharedData>().props;
+    const { auth, nb_commandes_attente, nb_panier } = usePage<SharedData>().props;
     const user = auth.user;
     const currentPath = window.location.pathname;
 
@@ -71,7 +71,7 @@ export default function SevenLayout({ children, title }: SevenLayoutProps) {
                     <NavLink href={route('achat')} active={currentPath === '/achat'} icon={<ShoppingCart size={14} />}>
                         Achat
                     </NavLink>
-                    <NavLink href={route('panier')} active={currentPath === '/panier'} icon={<ClipboardList size={14} />}>
+                    <NavLink href={route('panier')} active={currentPath === '/panier'} icon={<ClipboardList size={14} />} badge={nb_panier}>
                         Panier
                     </NavLink>
                     <NavLink href={route('vente')} active={currentPath === '/vente'} icon={<ShoppingBag size={14} />}>

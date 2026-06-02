@@ -1,5 +1,5 @@
 import { Head, Link, router, useForm } from '@inertiajs/react';
-import { ShoppingCart, Trash2 } from 'lucide-react';
+import { Minus, Plus, ShoppingCart, Trash2 } from 'lucide-react';
 
 import SevenLayout from '@/layouts/seven-layout';
 import type { Tag } from '@/types';
@@ -23,17 +23,18 @@ interface PanierData {
     items: PanierItem[];
 }
 
-interface PanierProps {
-    panier: PanierData;
-}
-
-export default function Panier({ panier }: PanierProps) {
+export default function Panier({ panier }: { panier: PanierData }) {
     const { data, setData, post, processing } = useForm({ note: panier.note ?? '' });
 
     const total = panier.items.reduce((sum, i) => sum + Number(i.prix_unitaire) * i.quantite, 0);
 
     function retirer(id: number) {
         router.delete(route('panier.retirer', id));
+    }
+
+    function majQuantite(id: number, quantite: number) {
+        if (quantite < 1) return;
+        router.patch(route('panier.quantite', id), { quantite });
     }
 
     function valider(e: React.FormEvent) {
@@ -55,38 +56,66 @@ export default function Panier({ panier }: PanierProps) {
             ) : (
                 <div className="grid gap-6 lg:grid-cols-3">
                     {/* Items */}
-                    <div className="lg:col-span-2 space-y-3">
+                    <div className="space-y-3 lg:col-span-2">
                         <div className="text-[10px] tracking-widest text-[#333]">// ARTICLES ({panier.items.length})</div>
+
                         {panier.items.map((ci) => (
                             <div key={ci.id} className="seven-panel flex items-center gap-4 p-3">
+                                {/* Thumbnail */}
                                 <div className="h-12 w-12 shrink-0 overflow-hidden border border-[#1a1a1a] bg-[#0a0a0a]">
                                     {ci.item.image_url ? (
                                         <img src={ci.item.image_url} alt="" className="h-full w-full object-cover opacity-80" />
                                     ) : (
-                                        <div className="flex h-full items-center justify-center text-[#1a1a1a] text-xl">?</div>
+                                        <div className="flex h-full items-center justify-center text-xl text-[#1a1a1a]">?</div>
                                     )}
                                 </div>
 
-                                <div className="flex-1 min-w-0">
+                                {/* Info */}
+                                <div className="min-w-0 flex-1">
                                     <div className="text-sm font-bold uppercase tracking-widest text-[#ccc]">{ci.item.nom}</div>
-                                    <div className="flex flex-wrap gap-1 mt-1">
+                                    <div className="mt-1 flex flex-wrap gap-1">
                                         {ci.item.tags.map((t) => (
                                             <span key={t.nom} className="seven-tag" style={{ color: t.couleur, borderColor: t.couleur }}>
                                                 {t.nom}
                                             </span>
                                         ))}
                                     </div>
+                                    <div className="mt-1 text-[10px] text-[#444]">
+                                        ${Number(ci.prix_unitaire).toLocaleString()} / u
+                                    </div>
                                 </div>
 
-                                <div className="text-right shrink-0">
-                                    <div className="text-[10px] text-[#444]">x{ci.quantite}</div>
+                                {/* Quantity controls */}
+                                <div className="flex shrink-0 items-center border border-[#1e1e1e]">
+                                    <button
+                                        type="button"
+                                        onClick={() => majQuantite(ci.id, ci.quantite - 1)}
+                                        disabled={ci.quantite <= 1}
+                                        className="cursor-pointer px-2 py-1 text-[#555] transition-colors hover:bg-[#111] hover:text-[#ccc] disabled:opacity-30"
+                                    >
+                                        <Minus size={11} />
+                                    </button>
+                                    <span className="w-8 text-center text-sm text-[#ccc]">{ci.quantite}</span>
+                                    <button
+                                        type="button"
+                                        onClick={() => majQuantite(ci.id, ci.quantite + 1)}
+                                        disabled={ci.quantite >= ci.item.stock}
+                                        className="cursor-pointer px-2 py-1 text-[#555] transition-colors hover:bg-[#111] hover:text-[#ccc] disabled:opacity-30"
+                                    >
+                                        <Plus size={11} />
+                                    </button>
+                                </div>
+
+                                {/* Subtotal */}
+                                <div className="w-20 shrink-0 text-right">
                                     <div className="text-sm font-bold text-[#00ff41]">
                                         ${(Number(ci.prix_unitaire) * ci.quantite).toLocaleString()}
                                     </div>
-                                    <div className="text-[10px] text-[#444]">${Number(ci.prix_unitaire).toLocaleString()} / u</div>
                                 </div>
 
+                                {/* Remove */}
                                 <button
+                                    type="button"
                                     onClick={() => retirer(ci.id)}
                                     className="cursor-pointer shrink-0 text-[#333] transition-colors hover:text-[#cc0000]"
                                 >
@@ -96,12 +125,12 @@ export default function Panier({ panier }: PanierProps) {
                         ))}
                     </div>
 
-                    {/* Summary + submit */}
+                    {/* Summary */}
                     <div className="space-y-4">
                         <div className="seven-panel p-4">
                             <div className="mb-3 text-[10px] tracking-widest text-[#333]">// RÉCAPITULATIF</div>
 
-                            <div className="flex items-center justify-between border-b border-[#1a1a1a] pb-3 mb-3">
+                            <div className="mb-3 flex items-center justify-between border-b border-[#1a1a1a] pb-3">
                                 <span className="text-xs text-[#555]">Total estimé</span>
                                 <span className="text-xl font-bold text-[#00ff41]">${total.toLocaleString()}</span>
                             </div>
@@ -116,7 +145,7 @@ export default function Panier({ panier }: PanierProps) {
                                         onChange={(e) => setData('note', e.target.value)}
                                         className="seven-input w-full px-3 py-2 text-sm"
                                         rows={3}
-                                        placeholder="Infos supplémentaires pour l'admin..."
+                                        placeholder="Infos pour l'admin..."
                                     />
                                 </div>
 

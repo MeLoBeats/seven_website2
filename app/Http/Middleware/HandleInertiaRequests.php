@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Commande;
+use App\Models\CommandeItem;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -48,6 +49,12 @@ class HandleInertiaRequests extends Middleware
             ],
             'nb_commandes_attente' => $request->user()?->isAdmin()
                 ? Commande::where('statut', 'en_attente')->count()
+                : 0,
+            'nb_panier' => $request->user()
+                ? CommandeItem::whereHas('commande', fn ($q) => $q
+                    ->where('user_id', $request->user()->id)
+                    ->where('statut', 'panier')
+                )->count()
                 : 0,
         ]);
     }

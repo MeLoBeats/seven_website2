@@ -51,6 +51,20 @@ class PanierController extends Controller
         return back()->with('success', 'Article ajouté au panier.');
     }
 
+    public function majQuantite(Request $request, CommandeItem $commandeItem): RedirectResponse
+    {
+        if ($commandeItem->commande->user_id !== $request->user()->id) {
+            abort(403);
+        }
+
+        $request->validate(['quantite' => ['required', 'integer', 'min:1']]);
+
+        $max = $commandeItem->item->stock;
+        $commandeItem->update(['quantite' => min((int) $request->quantite, $max)]);
+
+        return back();
+    }
+
     public function retirer(Request $request, CommandeItem $commandeItem): RedirectResponse
     {
         if ($commandeItem->commande->user_id !== $request->user()->id) {
