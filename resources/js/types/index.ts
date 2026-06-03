@@ -27,7 +27,7 @@ export interface SharedData {
     auth: Auth;
     nb_commandes_attente: number;
     nb_panier: number;
-    flash: { success: string | null; error: string | null };
+    flash: { success: string | null; error: string | null; key: string | null };
     [key: string]: unknown;
 }
 

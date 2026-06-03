@@ -50,6 +50,9 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'success' => $request->session()->get('success'),
                 'error' => $request->session()->get('error'),
+                'key' => $request->session()->get('success') || $request->session()->get('error')
+                    ? uniqid('', true)
+                    : null,
             ],
             'nb_commandes_attente' => $request->user()?->isAdmin()
                 ? Commande::where('statut', 'en_attente')->count()
