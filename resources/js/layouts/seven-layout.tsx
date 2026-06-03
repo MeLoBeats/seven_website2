@@ -2,6 +2,8 @@
 import { ClipboardList, KeyRound, ShieldCheck, ShoppingCart, User, Users } from 'lucide-react';
 import { type ReactNode } from 'react';
 
+import Toast from '@/components/toast';
+
 import type { SharedData } from '@/types';
 
 interface NavLinkProps {
@@ -135,6 +137,8 @@ export default function SevenLayout({ children, title }: SevenLayoutProps) {
                 )}
                 <div className="flex-1 p-6">{children}</div>
             </main>
+
+            <Toast />
         </div>
     );
 }
