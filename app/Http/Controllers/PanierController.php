@@ -27,24 +27,23 @@ class PanierController extends Controller
             'quantite' => ['required', 'integer', 'min:1'],
         ]);
 
-        if (! in_array($item->type, ['vente', 'les_deux']) || $item->stock <= 0) {
-            abort(422, 'Article non disponible.');
+        if (! in_array($item->type, ['achat', 'les_deux'])) {
+            abort(422, 'Article non disponible au rachat.');
         }
 
-        $quantite = min((int) $request->quantite, $item->stock);
+        $quantite = max(1, (int) $request->quantite);
 
         $panier = $this->getPanier($request->user()->id);
 
         $ligne = $panier->items()->where('item_id', $item->id)->first();
 
         if ($ligne) {
-            $nouvelle = min($ligne->quantite + $quantite, $item->stock);
-            $ligne->update(['quantite' => $nouvelle]);
+            $ligne->update(['quantite' => $ligne->quantite + $quantite]);
         } else {
             $panier->items()->create([
                 'item_id' => $item->id,
                 'quantite' => $quantite,
-                'prix_unitaire' => $item->prix_vente,
+                'prix_unitaire' => $item->prix_achat,
             ]);
         }
 

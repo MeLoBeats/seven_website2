@@ -18,8 +18,8 @@ test('achat page is accessible to authenticated users', function () {
     $this->get('/achat')->assertOk();
 });
 
-test('vente page is accessible to authenticated users', function () {
+test('panier page is accessible to authenticated users', function () {
     $this->actingAs(User::factory()->create());
 
-    $this->get('/vente')->assertOk();
+    $this->get('/panier')->assertOk();
 });

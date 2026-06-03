@@ -11,14 +11,13 @@ class AchatController extends Controller
     public function index(): Response
     {
         $items = Item::with('tags')
-            ->whereIn('type', ['vente', 'les_deux'])
-            ->where('stock', '>', 0)
+            ->whereIn('type', ['achat', 'les_deux'])
             ->get()
             ->map(fn (Item $item) => [
                 'id' => $item->id,
                 'nom' => $item->nom,
                 'description' => $item->description,
-                'prix_vente' => $item->prix_vente,
+                'prix_achat' => $item->prix_achat,
                 'stock' => $item->stock,
                 'image_url' => $item->image_url,
                 'tags' => $item->tags->map(fn ($tag) => ['nom' => $tag->nom, 'couleur' => $tag->couleur]),

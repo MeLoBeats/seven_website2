@@ -8,7 +8,6 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\GestionController;
 use App\Http\Controllers\PanierController;
-use App\Http\Controllers\VenteController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -23,7 +22,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/gestion/telephone/{phoneNumber}', [GestionController::class, 'deletePhone'])->name('gestion.phone.destroy');
 
     Route::get('/achat', [AchatController::class, 'index'])->name('achat');
-    Route::get('/vente', [VenteController::class, 'index'])->name('vente');
 
     Route::get('/panier', [PanierController::class, 'index'])->name('panier');
     Route::post('/panier/items/{item}', [PanierController::class, 'ajouter'])->name('panier.ajouter');

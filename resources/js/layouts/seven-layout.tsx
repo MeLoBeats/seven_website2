@@ -1,5 +1,5 @@
 import { Link, router, usePage } from '@inertiajs/react';
-import { ClipboardList, KeyRound, ShieldCheck, ShoppingBag, ShoppingCart, User, Users } from 'lucide-react';
+import { ClipboardList, KeyRound, ShieldCheck, ShoppingCart, User, Users } from 'lucide-react';
 import { type ReactNode } from 'react';
 
 import type { SharedData } from '@/types';
@@ -69,13 +69,10 @@ export default function SevenLayout({ children, title }: SevenLayoutProps) {
                         Gestion
                     </NavLink>
                     <NavLink href={route('achat')} active={currentPath === '/achat'} icon={<ShoppingCart size={14} />}>
-                        Achat
+                        Rachat
                     </NavLink>
                     <NavLink href={route('panier')} active={currentPath === '/panier'} icon={<ClipboardList size={14} />} badge={nb_panier}>
-                        Panier
-                    </NavLink>
-                    <NavLink href={route('vente')} active={currentPath === '/vente'} icon={<ShoppingBag size={14} />}>
-                        Vente
+                        Mon offre
                     </NavLink>
 
                     {user?.role === 'admin' && (

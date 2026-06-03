@@ -43,14 +43,14 @@ export default function Panier({ panier }: { panier: PanierData }) {
     }
 
     return (
-        <SevenLayout title="Mon panier">
-            <Head title="Panier — Seven" />
+        <SevenLayout title="Mon offre de vente">
+            <Head title="Mon offre — Seven" />
 
             {panier.items.length === 0 ? (
                 <div className="flex h-48 flex-col items-center justify-center gap-3 border border-[#1a1a1a] bg-[#0d0d0d]">
-                    <span className="text-xs text-[#333]">// PANIER VIDE</span>
+                    <span className="text-xs text-[#333]">// AUCUN ARTICLE</span>
                     <Link href={route('achat')} className="seven-btn-primary px-4 py-2 text-xs">
-                        <ShoppingCart size={12} className="mr-1 inline" /> VOIR LE CATALOGUE
+                        <ShoppingCart size={12} className="mr-1 inline" /> VOIR LE CATALOGUE DE RACHAT
                     </Link>
                 </div>
             ) : (
@@ -128,10 +128,10 @@ export default function Panier({ panier }: { panier: PanierData }) {
                     {/* Summary */}
                     <div className="space-y-4">
                         <div className="seven-panel p-4">
-                            <div className="mb-3 text-[10px] tracking-widest text-[#333]">// RÉCAPITULATIF</div>
+                            <div className="mb-3 text-[10px] tracking-widest text-[#333]">// ESTIMATION</div>
 
                             <div className="mb-3 flex items-center justify-between border-b border-[#1a1a1a] pb-3">
-                                <span className="text-xs text-[#555]">Total estimé</span>
+                                <span className="text-xs text-[#555]">Seven vous paiera</span>
                                 <span className="text-xl font-bold text-[#00ff41]">${total.toLocaleString()}</span>
                             </div>
 
@@ -145,7 +145,7 @@ export default function Panier({ panier }: { panier: PanierData }) {
                                         onChange={(e) => setData('note', e.target.value)}
                                         className="seven-input w-full px-3 py-2 text-sm"
                                         rows={3}
-                                        placeholder="Infos pour l'admin..."
+                                        placeholder="Ex: disponible ce soir, contactez le 555-1234..."
                                     />
                                 </div>
 
@@ -160,7 +160,7 @@ export default function Panier({ panier }: { panier: PanierData }) {
                         </div>
 
                         <Link href={route('achat')} className="block text-center text-[10px] text-[#444] hover:text-[#999]">
-                            &lt; Continuer les achats
+                            &lt; Voir d'autres articles
                         </Link>
                     </div>
                 </div>
