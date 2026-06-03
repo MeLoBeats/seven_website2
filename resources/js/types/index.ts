@@ -64,6 +64,7 @@ export interface Item {
     prix_achat: string | null;
     prix_vente: string | null;
     stock: number;
+    actif: boolean;
     type: 'achat' | 'vente' | 'les_deux';
     image_url: string | null;
     tags: Tag[];

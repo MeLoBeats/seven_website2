@@ -1,5 +1,5 @@
-import { Head, router, useForm } from '@inertiajs/react';
-import { Edit2, Package, Plus, Trash2, X } from 'lucide-react';
+﻿import { Head, router, useForm } from '@inertiajs/react';
+import { Edit2, Package, Plus, Power, Trash2, X } from 'lucide-react';
 import { useState, type ChangeEvent } from 'react';
 
 import SevenLayout from '@/layouts/seven-layout';
@@ -115,7 +115,7 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
             {/* Tags section */}
             <div className="mb-6 seven-panel p-4">
                 <div className="mb-3 flex items-center justify-between">
-                    <span className="text-[10px] tracking-widest text-[#333]">// TAGS</span>
+                    <span className="text-[10px] tracking-widest text-muted-foreground/40">// TAGS</span>
                     <button onClick={() => setShowTagForm((v) => !v)} className="seven-btn-primary px-3 py-1 text-[10px]">
                         <Plus size={11} className="inline" /> TAG
                     </button>
@@ -134,7 +134,7 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
                             type="color"
                             value={tagForm.data.couleur}
                             onChange={(e) => tagForm.setData('couleur', e.target.value)}
-                            className="h-8 w-10 cursor-pointer border border-[#1e1e1e] bg-transparent"
+                            className="h-8 w-10 cursor-pointer border border-border bg-transparent"
                         />
                         <button type="submit" disabled={tagForm.processing} className="seven-btn-primary px-3 py-1 text-xs">
                             OK
@@ -150,20 +150,20 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
                             </span>
                             <button
                                 onClick={() => deleteTag(tag.id)}
-                                className="cursor-pointer text-[#333] hover:text-[#cc0000]"
+                                className="cursor-pointer text-muted-foreground/40 hover:text-destructive"
                             >
                                 <X size={10} />
                             </button>
                         </div>
                     ))}
-                    {tags.length === 0 && <span className="text-[10px] text-[#333]">Aucun tag</span>}
+                    {tags.length === 0 && <span className="text-[10px] text-muted-foreground/40">Aucun tag</span>}
                 </div>
             </div>
 
             {/* Items header */}
             <div className="mb-4 flex items-center justify-between">
-                <span className="text-xs text-[#555]">
-                    <span className="text-[#00ff41]">{items.length}</span> article{items.length !== 1 ? 's' : ''}
+                <span className="text-xs text-muted-foreground/80">
+                    <span className="text-primary">{items.length}</span> article{items.length !== 1 ? 's' : ''}
                 </span>
                 <button onClick={openCreate} className="seven-btn-primary px-4 py-2 text-xs">
                     <Plus size={12} className="mr-1 inline" /> NOUVEL ARTICLE
@@ -173,14 +173,14 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
             {/* Item form modal */}
             {showForm && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
-                    <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto border border-[#2a2a2a] bg-[#0d0d0d] p-6">
+                    <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto border border-[var(--seven-border-bright)] bg-[var(--seven-panel)] p-6">
                         <div className="mb-4 flex items-center justify-between">
-                            <span className="text-[10px] tracking-widest text-[#555]">
+                            <span className="text-[10px] tracking-widest text-muted-foreground/80">
                                 {editing ? '// MODIFIER ARTICLE' : '// NOUVEL ARTICLE'}
                             </span>
                             <button
                                 onClick={() => setShowForm(false)}
-                                className="cursor-pointer text-[#444] hover:text-[#ccc]"
+                                className="cursor-pointer text-muted-foreground/60 hover:text-foreground"
                             >
                                 <X size={16} />
                             </button>
@@ -189,18 +189,18 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
                         <form onSubmit={submitItem} encType="multipart/form-data" className="space-y-4">
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="col-span-2">
-                                    <label className="mb-1 block text-[10px] uppercase tracking-widest text-[#555]">Nom</label>
+                                    <label className="mb-1 block text-[10px] uppercase tracking-widest text-muted-foreground/80">Nom</label>
                                     <input
                                         type="text"
                                         value={itemForm.data.nom}
                                         onChange={(e) => itemForm.setData('nom', e.target.value)}
                                         className="seven-input w-full px-3 py-2 text-sm"
                                     />
-                                    {itemForm.errors.nom && <p className="mt-1 text-[10px] text-[#cc0000]">{itemForm.errors.nom}</p>}
+                                    {itemForm.errors.nom && <p className="mt-1 text-[10px] text-destructive">{itemForm.errors.nom}</p>}
                                 </div>
 
                                 <div className="col-span-2">
-                                    <label className="mb-1 block text-[10px] uppercase tracking-widest text-[#555]">Description</label>
+                                    <label className="mb-1 block text-[10px] uppercase tracking-widest text-muted-foreground/80">Description</label>
                                     <textarea
                                         value={itemForm.data.description}
                                         onChange={(e) => itemForm.setData('description', e.target.value)}
@@ -210,7 +210,7 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
                                 </div>
 
                                 <div>
-                                    <label className="mb-1 block text-[10px] uppercase tracking-widest text-[#555]">Prix achat ($)</label>
+                                    <label className="mb-1 block text-[10px] uppercase tracking-widest text-muted-foreground/80">Prix achat ($)</label>
                                     <input
                                         type="number"
                                         value={itemForm.data.prix_achat}
@@ -221,7 +221,7 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
                                 </div>
 
                                 <div>
-                                    <label className="mb-1 block text-[10px] uppercase tracking-widest text-[#555]">Prix vente ($)</label>
+                                    <label className="mb-1 block text-[10px] uppercase tracking-widest text-muted-foreground/80">Prix vente ($)</label>
                                     <input
                                         type="number"
                                         value={itemForm.data.prix_vente}
@@ -232,7 +232,7 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
                                 </div>
 
                                 <div>
-                                    <label className="mb-1 block text-[10px] uppercase tracking-widest text-[#555]">Stock</label>
+                                    <label className="mb-1 block text-[10px] uppercase tracking-widest text-muted-foreground/80">Stock</label>
                                     <input
                                         type="number"
                                         value={itemForm.data.stock}
@@ -243,7 +243,7 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
                                 </div>
 
                                 <div>
-                                    <label className="mb-1 block text-[10px] uppercase tracking-widest text-[#555]">Type</label>
+                                    <label className="mb-1 block text-[10px] uppercase tracking-widest text-muted-foreground/80">Type</label>
                                     <select
                                         value={itemForm.data.type}
                                         onChange={(e) => itemForm.setData('type', e.target.value as ItemForm['type'])}
@@ -256,18 +256,18 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
                                 </div>
 
                                 <div className="col-span-2">
-                                    <label className="mb-1 block text-[10px] uppercase tracking-widest text-[#555]">Image</label>
+                                    <label className="mb-1 block text-[10px] uppercase tracking-widest text-muted-foreground/80">Image</label>
                                     <input
                                         type="file"
                                         accept="image/*"
                                         onChange={handleImage}
-                                        className="w-full text-[11px] text-[#555] file:mr-3 file:border file:border-[#2a2a2a] file:bg-transparent file:px-2 file:py-1 file:text-[10px] file:text-[#555] file:uppercase"
+                                        className="w-full text-[11px] text-muted-foreground/80 file:mr-3 file:border file:border-[var(--seven-border-bright)] file:bg-transparent file:px-2 file:py-1 file:text-[10px] file:text-muted-foreground/80 file:uppercase"
                                     />
                                 </div>
 
                                 {tags.length > 0 && (
                                     <div className="col-span-2">
-                                        <label className="mb-2 block text-[10px] uppercase tracking-widest text-[#555]">Tags</label>
+                                        <label className="mb-2 block text-[10px] uppercase tracking-widest text-muted-foreground/80">Tags</label>
                                         <div className="flex flex-wrap gap-2">
                                             {tags.map((tag) => {
                                                 const selected = itemForm.data.tags.includes(tag.id);
@@ -315,8 +315,8 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
 
             {/* Items list */}
             {items.length === 0 ? (
-                <div className="flex h-48 items-center justify-center border border-[#1a1a1a] bg-[#0d0d0d]">
-                    <span className="text-xs text-[#333]">// AUCUN ARTICLE</span>
+                <div className="flex h-48 items-center justify-center border border-[var(--sidebar-border)] bg-[var(--seven-panel)]">
+                    <span className="text-xs text-muted-foreground/40">// AUCUN ARTICLE</span>
                 </div>
             ) : (
                 <div className="space-y-3">
@@ -324,9 +324,9 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
                         const stockColor =
                             item.stock > 10 ? '#00ff41' : item.stock > 0 ? '#ffaa00' : '#cc0000';
                         return (
-                            <div key={item.id} className="seven-panel fade-in flex items-center gap-4 p-4">
+                            <div key={item.id} className={`seven-panel fade-in flex items-center gap-4 p-4 transition-opacity ${!item.actif ? 'opacity-40' : ''}`}>
                                 {/* Thumbnail */}
-                                <div className="h-12 w-12 shrink-0 overflow-hidden border border-[#1a1a1a] bg-[#0a0a0a]">
+                                <div className="h-12 w-12 shrink-0 overflow-hidden border border-[var(--sidebar-border)] bg-[var(--seven-input-bg)]">
                                     {item.image_url ? (
                                         <img
                                             src={item.image_url}
@@ -334,7 +334,7 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
                                             className="h-full w-full object-cover opacity-80"
                                         />
                                     ) : (
-                                        <div className="flex h-full items-center justify-center text-[#1a1a1a]">
+                                        <div className="flex h-full items-center justify-center text-[var(--seven-subtle)]">
                                             <Package size={18} />
                                         </div>
                                     )}
@@ -343,8 +343,8 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
                                 {/* Info */}
                                 <div className="flex-1 min-w-0">
                                     <div className="flex flex-wrap items-center gap-2">
-                                        <span className="text-sm font-bold text-[#ccc]">{item.nom}</span>
-                                        <span className="seven-tag border-[#333] text-[#555]">{typeLabels[item.type]}</span>
+                                        <span className="text-sm font-bold text-foreground">{item.nom}</span>
+                                        <span className="seven-tag border-[var(--seven-dim)] text-muted-foreground/80">{typeLabels[item.type]}</span>
                                         {item.tags.map((tag) => (
                                             <span
                                                 key={(tag as Tag & { id: number }).id}
@@ -357,13 +357,13 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
                                     </div>
                                     <div className="mt-1 flex flex-wrap gap-4 text-[11px]">
                                         {item.prix_achat && (
-                                            <span className="text-[#555]">
-                                                Rachat: <span className="text-[#00ff41]">${Number(item.prix_achat).toLocaleString()}</span>
+                                            <span className="text-muted-foreground/80">
+                                                Rachat: <span className="text-primary">${Number(item.prix_achat).toLocaleString()}</span>
                                             </span>
                                         )}
                                         {item.prix_vente && (
-                                            <span className="text-[#555]">
-                                                Vente: <span className="text-[#00ff41]">${Number(item.prix_vente).toLocaleString()}</span>
+                                            <span className="text-muted-foreground/80">
+                                                Vente: <span className="text-primary">${Number(item.prix_vente).toLocaleString()}</span>
                                             </span>
                                         )}
                                         <span style={{ color: stockColor }}>Stock: {item.stock}</span>
@@ -371,16 +371,24 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
                                 </div>
 
                                 {/* Actions */}
-                                <div className="flex shrink-0 gap-2">
+                                <div className="flex shrink-0 items-center gap-2">
+                                    <button
+                                        onClick={() => router.patch(route('admin.items.actif', item.id))}
+                                        title={item.actif ? 'Désactiver le rachat' : 'Activer le rachat'}
+                                        className="cursor-pointer transition-colors"
+                                        style={{ color: item.actif ? 'var(--seven-green)' : 'var(--seven-dim)' }}
+                                    >
+                                        <Power size={15} />
+                                    </button>
                                     <button
                                         onClick={() => openEdit(item)}
-                                        className="cursor-pointer text-[#333] transition-colors hover:text-[#00ff41]"
+                                        className="cursor-pointer text-muted-foreground/40 transition-colors hover:text-primary"
                                     >
                                         <Edit2 size={15} />
                                     </button>
                                     <button
                                         onClick={() => deleteItem(item.id)}
-                                        className="cursor-pointer text-[#333] transition-colors hover:text-[#cc0000]"
+                                        className="cursor-pointer text-muted-foreground/40 transition-colors hover:text-destructive"
                                     >
                                         <Trash2 size={15} />
                                     </button>

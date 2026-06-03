@@ -7,6 +7,7 @@ use App\Models\CommandeItem;
 use App\Models\Item;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -92,7 +93,48 @@ class PanierController extends Controller
             'note' => $request->note,
         ]);
 
+        $panier->load('items.item', 'user');
+        $this->notifierDiscord($panier);
+
         return to_route('achat')->with('success', 'Commande envoyée ! Un admin va la traiter.');
+    }
+
+    private function notifierDiscord(Commande $commande): void
+    {
+        $webhookUrl = config('services.discord.webhook_url');
+
+        if (! $webhookUrl) {
+            return;
+        }
+
+        $user = $commande->user;
+        $total = $commande->items->sum(fn ($i) => $i->prix_unitaire * $i->quantite);
+
+        $lignes = $commande->items->map(
+            fn ($ci) => "• **{$ci->item->nom}** x{$ci->quantite} — \${$ci->prix_unitaire}"
+        )->join("\n");
+
+        $commandesUrl = config('app.url').'/admin/commandes';
+
+        $payload = [
+            'content' => '<@&1502487400159510558>',
+            'embeds' => [[
+                'title' => '🛒 Nouvelle commande — Seven',
+                'url' => $commandesUrl,
+                'color' => 0xCC0000,
+                'fields' => [
+                    ['name' => 'Vendeur', 'value' => $user->username, 'inline' => true],
+                    ['name' => 'Groupe', 'value' => $user->groupe ?? '—', 'inline' => true],
+                    ['name' => 'Total estimé', 'value' => "\${$total}", 'inline' => true],
+                    ['name' => 'Articles', 'value' => $lignes ?: '—', 'inline' => false],
+                    ['name' => 'Note', 'value' => $commande->note ?: '—', 'inline' => false],
+                ],
+                'footer' => ['text' => 'Seven Network • Cliquez le titre pour traiter'],
+                'timestamp' => now()->toIso8601String(),
+            ]],
+        ];
+
+        Http::post($webhookUrl, $payload);
     }
 
     private function getPanier(int $userId): Commande

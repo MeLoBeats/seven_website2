@@ -1,4 +1,4 @@
-import { Head, Link, useForm } from '@inertiajs/react';
+﻿import { Head, Link, useForm } from '@inertiajs/react';
 import { type FormEventHandler } from 'react';
 
 export default function Login() {
@@ -13,26 +13,26 @@ export default function Login() {
     };
 
     return (
-        <div className="scanlines flex min-h-screen items-center justify-center bg-[#080808]">
+        <div className="scanlines flex min-h-screen items-center justify-center bg-background">
             <Head title="Connexion — Seven" />
 
             <div className="w-full max-w-sm px-4">
                 {/* Header */}
                 <div className="mb-8 text-center">
-                    <div className="mb-1 text-[10px] tracking-[0.4em] text-[#333]">[ CONNEXION SÉCURISÉE ]</div>
-                    <h1 className="cursor-blink text-2xl font-bold tracking-[0.2em] text-[#00ff41]">SEVEN</h1>
-                    <div className="mt-1 text-[10px] tracking-widest text-[#444]">ACCÈS RESTREINT</div>
+                    <div className="mb-1 text-[10px] tracking-[0.4em] text-muted-foreground/40">[ CONNEXION SÉCURISÉE ]</div>
+                    <h1 className="cursor-blink text-2xl font-bold tracking-[0.2em] text-primary">SEVEN</h1>
+                    <div className="mt-1 text-[10px] tracking-widest text-muted-foreground/60">ACCÈS RESTREINT</div>
                 </div>
 
                 {/* Panel */}
-                <div className="border border-[#1e1e1e] bg-[#0d0d0d] p-6">
-                    <div className="mb-4 text-[10px] tracking-widest text-[#333]">
+                <div className="border border-border bg-[var(--seven-panel)] p-6">
+                    <div className="mb-4 text-[10px] tracking-widest text-muted-foreground/40">
                         // AUTHENTIFICATION REQUISE
                     </div>
 
                     <form onSubmit={submit} className="space-y-4">
                         <div>
-                            <label className="mb-1 block text-[10px] uppercase tracking-widest text-[#555]">
+                            <label className="mb-1 block text-[10px] uppercase tracking-widest text-muted-foreground/80">
                                 Identifiant
                             </label>
                             <input
@@ -45,12 +45,12 @@ export default function Login() {
                                 placeholder="identifiant"
                             />
                             {errors.username && (
-                                <p className="mt-1 text-[10px] text-[#cc0000]">{errors.username}</p>
+                                <p className="mt-1 text-[10px] text-destructive">{errors.username}</p>
                             )}
                         </div>
 
                         <div>
-                            <label className="mb-1 block text-[10px] uppercase tracking-widest text-[#555]">
+                            <label className="mb-1 block text-[10px] uppercase tracking-widest text-muted-foreground/80">
                                 Mot de passe
                             </label>
                             <input
@@ -62,7 +62,7 @@ export default function Login() {
                                 placeholder="••••••••"
                             />
                             {errors.password && (
-                                <p className="mt-1 text-[10px] text-[#cc0000]">{errors.password}</p>
+                                <p className="mt-1 text-[10px] text-destructive">{errors.password}</p>
                             )}
                         </div>
 
@@ -76,14 +76,14 @@ export default function Login() {
                     </form>
                 </div>
 
-                <div className="mt-4 text-center text-[10px] text-[#333]">
+                <div className="mt-4 text-center text-[10px] text-muted-foreground/40">
                     Pas encore de compte ?{' '}
-                    <Link href={route('register')} className="text-[#555] underline underline-offset-2 hover:text-[#00ff41]">
+                    <Link href={route('register')} className="text-muted-foreground/80 underline underline-offset-2 hover:text-primary">
                         s'enregistrer
                     </Link>
                 </div>
 
-                <div className="mt-6 text-center text-[9px] tracking-widest text-[#1e1e1e]">
+                <div className="mt-6 text-center text-[9px] tracking-widest text-border">
                     SEVEN NETWORK — ACCÈS CONTRÔLÉ
                 </div>
             </div>

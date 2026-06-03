@@ -1,4 +1,4 @@
-import { Head, router } from '@inertiajs/react';
+﻿import { Head, router } from '@inertiajs/react';
 import { ShieldCheck, Trash2, User } from 'lucide-react';
 
 import SevenLayout from '@/layouts/seven-layout';
@@ -31,13 +31,13 @@ export default function AdminUsers({ users }: AdminUsersProps) {
         <SevenLayout title="Gestion des invités">
             <Head title="Invités — Admin Seven" />
 
-            <div className="mb-4 text-xs text-[#555]">
-                <span className="text-[#00ff41]">{users.length}</span> invité{users.length !== 1 ? 's' : ''} enregistré{users.length !== 1 ? 's' : ''}
+            <div className="mb-4 text-xs text-muted-foreground/80">
+                <span className="text-primary">{users.length}</span> invité{users.length !== 1 ? 's' : ''} enregistré{users.length !== 1 ? 's' : ''}
             </div>
 
             {users.length === 0 ? (
-                <div className="flex h-48 items-center justify-center border border-[#1a1a1a] bg-[#0d0d0d]">
-                    <span className="text-xs text-[#333]">// AUCUN INVITÉ</span>
+                <div className="flex h-48 items-center justify-center border border-[var(--sidebar-border)] bg-[var(--seven-panel)]">
+                    <span className="text-xs text-muted-foreground/40">// AUCUN INVITÉ</span>
                 </div>
             ) : (
                 <div className="space-y-3">
@@ -48,10 +48,10 @@ export default function AdminUsers({ users }: AdminUsersProps) {
                                 <img
                                     src={user.photo_profil_url}
                                     alt=""
-                                    className="h-10 w-10 shrink-0 rounded-full border border-[#2a2a2a] object-cover"
+                                    className="h-10 w-10 shrink-0 rounded-full border border-[var(--seven-border-bright)] object-cover"
                                 />
                             ) : (
-                                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#2a2a2a] bg-[#111] text-[#444]">
+                                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--seven-border-bright)] bg-muted text-muted-foreground/60">
                                     <User size={16} />
                                 </div>
                             )}
@@ -59,20 +59,20 @@ export default function AdminUsers({ users }: AdminUsersProps) {
                             {/* Info */}
                             <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-2">
-                                    <span className="text-sm font-bold text-[#ccc]">{user.username}</span>
+                                    <span className="text-sm font-bold text-foreground">{user.username}</span>
                                     {user.groupe && (
-                                        <span className="seven-tag text-[#555] border-[#333]">{user.groupe}</span>
+                                        <span className="seven-tag text-muted-foreground/80 border-[var(--seven-dim)]">{user.groupe}</span>
                                     )}
                                 </div>
-                                <div className="text-[10px] text-[#444]">Inscrit le {user.created_at}</div>
+                                <div className="text-[10px] text-muted-foreground/60">Inscrit le {user.created_at}</div>
 
                                 {/* Phone numbers */}
                                 {user.phone_numbers.length > 0 && (
                                     <div className="mt-2 flex flex-wrap gap-2">
                                         {user.phone_numbers.map((p, i) => (
-                                            <span key={i} className="border border-[#1a1a1a] bg-[#0a0a0a] px-2 py-0.5 text-[11px] text-[#666]">
+                                            <span key={i} className="border border-[var(--sidebar-border)] bg-[var(--seven-input-bg)] px-2 py-0.5 text-[11px] text-muted-foreground">
                                                 {p.numero}
-                                                {p.label && <span className="ml-1 text-[#444]">({p.label})</span>}
+                                                {p.label && <span className="ml-1 text-muted-foreground/60">({p.label})</span>}
                                             </span>
                                         ))}
                                     </div>
@@ -84,13 +84,13 @@ export default function AdminUsers({ users }: AdminUsersProps) {
                                 <button
                                     onClick={() => toggleRole(user.id)}
                                     title="Promouvoir admin"
-                                    className="cursor-pointer text-[#333] transition-colors hover:text-[#00ff41]"
+                                    className="cursor-pointer text-muted-foreground/40 transition-colors hover:text-primary"
                                 >
                                     <ShieldCheck size={15} />
                                 </button>
                                 <button
                                     onClick={() => deleteUser(user.id)}
-                                    className="cursor-pointer text-[#333] transition-colors hover:text-[#cc0000]"
+                                    className="cursor-pointer text-muted-foreground/40 transition-colors hover:text-destructive"
                                 >
                                     <Trash2 size={15} />
                                 </button>

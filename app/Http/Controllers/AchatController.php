@@ -12,6 +12,7 @@ class AchatController extends Controller
     {
         $items = Item::with('tags')
             ->whereIn('type', ['achat', 'les_deux'])
+            ->where('actif', true)
             ->get()
             ->map(fn (Item $item) => [
                 'id' => $item->id,

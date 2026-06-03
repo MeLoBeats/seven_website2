@@ -22,6 +22,7 @@ class ItemController extends Controller
             'prix_achat' => $item->prix_achat,
             'prix_vente' => $item->prix_vente,
             'stock' => $item->stock,
+            'actif' => $item->actif,
             'type' => $item->type,
             'image_url' => $item->image_url,
             'tags' => $item->tags->map(fn ($tag) => ['id' => $tag->id, 'nom' => $tag->nom, 'couleur' => $tag->couleur]),
@@ -91,6 +92,13 @@ class ItemController extends Controller
         $item->tags()->sync($request->tags ?? []);
 
         return back()->with('success', 'Article mis à jour.');
+    }
+
+    public function toggleActif(Item $item): RedirectResponse
+    {
+        $item->update(['actif' => ! $item->actif]);
+
+        return back()->with('success', $item->actif ? 'Rachat activé.' : 'Rachat désactivé.');
     }
 
     public function destroy(Item $item): RedirectResponse

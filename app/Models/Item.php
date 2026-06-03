@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Database\Factories\ItemFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Item extends Model
 {
-    /** @use HasFactory<\Database\Factories\ItemFactory> */
+    /** @use HasFactory<ItemFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -16,6 +18,7 @@ class Item extends Model
         'prix_achat',
         'prix_vente',
         'stock',
+        'actif',
         'type',
         'image',
     ];
@@ -26,10 +29,11 @@ class Item extends Model
             'prix_achat' => 'decimal:2',
             'prix_vente' => 'decimal:2',
             'stock' => 'integer',
+            'actif' => 'boolean',
         ];
     }
 
-    public function tags(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
     }

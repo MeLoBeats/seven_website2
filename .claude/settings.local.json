@@ -5,7 +5,9 @@
       "Bash(php artisan *)",
       "mcp__laravel-boost__search-docs",
       "Bash(vendor/bin/pint --dirty --format agent)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(grep -rn \"#[0-9a-fA-F]\\\\{3,6\\\\}\" resources/js --include=\"*.tsx\")",
+      "Bash(grep -v \"//\\\\|/\\\\*\")"
     ]
   }
 }

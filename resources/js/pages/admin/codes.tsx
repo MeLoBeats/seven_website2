@@ -1,4 +1,4 @@
-import { Head, router, useForm } from '@inertiajs/react';
+﻿import { Head, router, useForm } from '@inertiajs/react';
 import { Copy, Plus, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -51,22 +51,22 @@ export default function AdminCodes({ codes, nb_disponibles }: Props) {
             {/* Stats */}
             <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
                 <div className="seven-panel p-3 text-center">
-                    <div className="text-2xl font-bold text-[#00ff41]">{nb_disponibles}</div>
-                    <div className="text-[10px] tracking-widest text-[#444]">DISPONIBLES</div>
+                    <div className="text-2xl font-bold text-primary">{nb_disponibles}</div>
+                    <div className="text-[10px] tracking-widest text-muted-foreground/60">DISPONIBLES</div>
                 </div>
                 <div className="seven-panel p-3 text-center">
-                    <div className="text-2xl font-bold text-[#ccc]">{codes.length - nb_disponibles}</div>
-                    <div className="text-[10px] tracking-widest text-[#444]">UTILISÉS</div>
+                    <div className="text-2xl font-bold text-foreground">{codes.length - nb_disponibles}</div>
+                    <div className="text-[10px] tracking-widest text-muted-foreground/60">UTILISÉS</div>
                 </div>
                 <div className="seven-panel p-3 text-center">
-                    <div className="text-2xl font-bold text-[#ccc]">{codes.length}</div>
-                    <div className="text-[10px] tracking-widest text-[#444]">TOTAL</div>
+                    <div className="text-2xl font-bold text-foreground">{codes.length}</div>
+                    <div className="text-[10px] tracking-widest text-muted-foreground/60">TOTAL</div>
                 </div>
             </div>
 
             {/* Create form */}
             <div className="seven-panel mb-6 p-4">
-                <div className="mb-3 text-[10px] tracking-widest text-[#333]">// GÉNÉRER UN CODE</div>
+                <div className="mb-3 text-[10px] tracking-widest text-muted-foreground/40">// GÉNÉRER UN CODE</div>
                 <form onSubmit={submit} className="flex gap-2">
                     <div className="flex-1">
                         <input
@@ -76,7 +76,7 @@ export default function AdminCodes({ codes, nb_disponibles }: Props) {
                             className="seven-input w-full px-3 py-2 font-mono text-sm uppercase tracking-widest"
                             placeholder="LAISSE VIDE POUR AUTO (ex: BALLAS-2025)"
                         />
-                        {errors.code && <p className="mt-1 text-[10px] text-[#cc0000]">{errors.code}</p>}
+                        {errors.code && <p className="mt-1 text-[10px] text-destructive">{errors.code}</p>}
                     </div>
                     <button
                         type="submit"
@@ -86,7 +86,7 @@ export default function AdminCodes({ codes, nb_disponibles }: Props) {
                         <Plus size={13} /> CRÉER
                     </button>
                 </form>
-                <p className="mt-2 text-[10px] text-[#333]">
+                <p className="mt-2 text-[10px] text-muted-foreground/40">
                     Laisse le champ vide pour générer un code aléatoire. Sinon écris le code que tu veux donner au groupe.
                 </p>
             </div>
@@ -111,8 +111,8 @@ export default function AdminCodes({ codes, nb_disponibles }: Props) {
 
             {/* Codes list */}
             {filtered.length === 0 ? (
-                <div className="flex h-32 items-center justify-center border border-[#1a1a1a] bg-[#0d0d0d]">
-                    <span className="text-xs text-[#333]">// AUCUN CODE</span>
+                <div className="flex h-32 items-center justify-center border border-[var(--sidebar-border)] bg-[var(--seven-panel)]">
+                    <span className="text-xs text-muted-foreground/40">// AUCUN CODE</span>
                 </div>
             ) : (
                 <div className="space-y-2">
@@ -133,10 +133,10 @@ export default function AdminCodes({ codes, nb_disponibles }: Props) {
                                     <button
                                         onClick={() => copyCode(c.id, c.code)}
                                         title="Copier"
-                                        className="cursor-pointer text-[#333] transition-colors hover:text-[#ccc]"
+                                        className="cursor-pointer text-muted-foreground/40 transition-colors hover:text-foreground"
                                     >
                                         {copied === c.id ? (
-                                            <span className="text-[10px] text-[#00ff41]">COPIÉ !</span>
+                                            <span className="text-[10px] text-primary">COPIÉ !</span>
                                         ) : (
                                             <Copy size={13} />
                                         )}
@@ -147,18 +147,18 @@ export default function AdminCodes({ codes, nb_disponibles }: Props) {
                             {/* Status */}
                             <div className="flex flex-1 items-center justify-end gap-4">
                                 {c.is_used ? (
-                                    <span className="text-[11px] text-[#555]">
+                                    <span className="text-[11px] text-muted-foreground/80">
                                         Utilisé par{' '}
-                                        <span className="text-[#999]">{c.used_by_username}</span>
+                                        <span className="text-sidebar-foreground">{c.used_by_username}</span>
                                     </span>
                                 ) : (
-                                    <span className="seven-tag border-[#00ff41] text-[#00ff41]">DISPONIBLE</span>
+                                    <span className="seven-tag border-primary text-primary">DISPONIBLE</span>
                                 )}
-                                <span className="text-[10px] text-[#333]">{c.created_at}</span>
+                                <span className="text-[10px] text-muted-foreground/40">{c.created_at}</span>
                                 {!c.is_used && (
                                     <button
                                         onClick={() => deleteCode(c.id)}
-                                        className="cursor-pointer text-[#333] transition-colors hover:text-[#cc0000]"
+                                        className="cursor-pointer text-muted-foreground/40 transition-colors hover:text-destructive"
                                     >
                                         <Trash2 size={14} />
                                     </button>

@@ -6,10 +6,15 @@ use App\Http\Controllers\Admin\CommandeController;
 use App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\DiscordActionController;
 use App\Http\Controllers\GestionController;
 use App\Http\Controllers\PanierController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
+// Routes Discord (liens signés, pas d'auth requise)
+Route::get('/discord/commande/{commande}/valider', [DiscordActionController::class, 'valider'])->name('discord.valider');
+Route::get('/discord/commande/{commande}/refuser', [DiscordActionController::class, 'refuser'])->name('discord.refuser');
 
 Route::get('/', function () {
     return Inertia::render('welcome');
@@ -45,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/items', [ItemController::class, 'index'])->name('admin.items');
         Route::post('/items', [ItemController::class, 'store'])->name('admin.items.store');
         Route::post('/items/{item}', [ItemController::class, 'update'])->name('admin.items.update');
+        Route::patch('/items/{item}/actif', [ItemController::class, 'toggleActif'])->name('admin.items.actif');
         Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('admin.items.destroy');
 
         Route::post('/tags', [TagController::class, 'store'])->name('admin.tags.store');

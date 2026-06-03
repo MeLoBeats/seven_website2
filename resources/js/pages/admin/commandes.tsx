@@ -1,4 +1,4 @@
-import { Head, useForm } from '@inertiajs/react';
+﻿import { Head, useForm } from '@inertiajs/react';
 import { CheckCircle, Phone, XCircle } from 'lucide-react';
 import { useState } from 'react';
 
@@ -32,9 +32,9 @@ interface Props {
 }
 
 const statutColors: Record<string, string> = {
-    en_attente: '#ffaa00',
-    validee: '#00ff41',
-    refusee: '#cc0000',
+    en_attente: 'var(--seven-warning)',
+    validee: 'var(--seven-green)',
+    refusee: 'var(--seven-red)',
 };
 
 const statutLabels: Record<string, string> = {
@@ -74,8 +74,8 @@ export default function AdminCommandes({ commandes, nb_en_attente }: Props) {
             </div>
 
             {filtered.length === 0 ? (
-                <div className="flex h-48 items-center justify-center border border-[#1a1a1a] bg-[#0d0d0d]">
-                    <span className="text-xs text-[#333]">// AUCUNE COMMANDE</span>
+                <div className="flex h-48 items-center justify-center border border-[var(--sidebar-border)] bg-[var(--seven-panel)]">
+                    <span className="text-xs text-muted-foreground/40">// AUCUNE COMMANDE</span>
                 </div>
             ) : (
                 <div className="space-y-4">
@@ -111,18 +111,18 @@ function CommandeCard({ commande: c }: { commande: Commande }) {
             <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
                 <div className="flex items-center gap-3">
                     {c.user.photo_profil_url ? (
-                        <img src={c.user.photo_profil_url} alt="" className="h-9 w-9 rounded-full border border-[#2a2a2a] object-cover" />
+                        <img src={c.user.photo_profil_url} alt="" className="h-9 w-9 rounded-full border border-[var(--seven-border-bright)] object-cover" />
                     ) : (
-                        <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[#2a2a2a] bg-[#111] text-[#444]">
+                        <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--seven-border-bright)] bg-muted text-muted-foreground/60">
                             {c.user.username[0]?.toUpperCase()}
                         </div>
                     )}
                     <div>
-                        <span className="text-sm font-bold text-[#ccc]">{c.user.username}</span>
-                        {c.user.groupe && <span className="ml-2 text-[10px] text-[#555]">{c.user.groupe}</span>}
+                        <span className="text-sm font-bold text-foreground">{c.user.username}</span>
+                        {c.user.groupe && <span className="ml-2 text-[10px] text-muted-foreground/80">{c.user.groupe}</span>}
                         <div className="flex flex-wrap gap-1 mt-0.5">
                             {c.user.phone_numbers.map((p, i) => (
-                                <span key={i} className="flex items-center gap-1 text-[10px] text-[#444]">
+                                <span key={i} className="flex items-center gap-1 text-[10px] text-muted-foreground/60">
                                     <Phone size={9} /> {p.numero}{p.label && ` (${p.label})`}
                                 </span>
                             ))}
@@ -132,39 +132,39 @@ function CommandeCard({ commande: c }: { commande: Commande }) {
 
                 <div className="text-right">
                     <span className="seven-tag" style={{ color, borderColor: color }}>{statutLabels[c.statut]}</span>
-                    <div className="mt-1 text-[10px] text-[#444]">{c.created_at}</div>
+                    <div className="mt-1 text-[10px] text-muted-foreground/60">{c.created_at}</div>
                 </div>
             </div>
 
             {/* Items */}
-            <div className="mb-3 space-y-1 border border-[#1a1a1a] bg-[#0a0a0a] p-3">
+            <div className="mb-3 space-y-1 border border-[var(--sidebar-border)] bg-[var(--seven-input-bg)] p-3">
                 {c.items.map((item, i) => (
                     <div key={i} className="flex items-center justify-between text-xs">
-                        <span className="text-[#999]">
-                            <span className="text-[#555]">x{item.quantite}</span> {item.nom}
+                        <span className="text-sidebar-foreground">
+                            <span className="text-muted-foreground/80">x{item.quantite}</span> {item.nom}
                         </span>
-                        <span className="text-[#00ff41]">
+                        <span className="text-primary">
                             ${(Number(item.prix_unitaire) * item.quantite).toLocaleString()}
                         </span>
                     </div>
                 ))}
-                <div className="mt-2 flex justify-between border-t border-[#1a1a1a] pt-2 text-xs font-bold">
-                    <span className="text-[#555]">TOTAL</span>
-                    <span className="text-[#00ff41]">${Number(c.total).toLocaleString()}</span>
+                <div className="mt-2 flex justify-between border-t border-[var(--sidebar-border)] pt-2 text-xs font-bold">
+                    <span className="text-muted-foreground/80">TOTAL</span>
+                    <span className="text-primary">${Number(c.total).toLocaleString()}</span>
                 </div>
             </div>
 
             {/* Note client */}
             {c.note && (
-                <div className="mb-3 border-l-2 border-[#ffaa00] pl-3 text-xs text-[#666]">
-                    <span className="text-[#ffaa00]">NOTE: </span>{c.note}
+                <div className="mb-3 border-l-2 border-[var(--seven-warning)] pl-3 text-xs text-muted-foreground">
+                    <span className="text-[var(--seven-warning)]">NOTE: </span>{c.note}
                 </div>
             )}
 
             {/* Note admin */}
             {c.note_admin && (
-                <div className="mb-3 border-l-2 border-[#00ff41] pl-3 text-xs text-[#666]">
-                    <span className="text-[#00ff41]">RÉPONSE: </span>{c.note_admin}
+                <div className="mb-3 border-l-2 border-primary pl-3 text-xs text-muted-foreground">
+                    <span className="text-primary">RÉPONSE: </span>{c.note_admin}
                 </div>
             )}
 
@@ -173,7 +173,7 @@ function CommandeCard({ commande: c }: { commande: Commande }) {
                 <div className="space-y-2">
                     <button
                         onClick={() => setShowNote((v) => !v)}
-                        className="text-[10px] text-[#444] hover:text-[#999] cursor-pointer"
+                        className="text-[10px] text-muted-foreground/60 hover:text-sidebar-foreground cursor-pointer"
                     >
                         {showNote ? '▲ masquer note' : '▼ ajouter une note'}
                     </button>

@@ -1,4 +1,4 @@
-import { Head, router, useForm, usePage } from '@inertiajs/react';
+﻿import { Head, router, useForm, usePage } from '@inertiajs/react';
 import { Plus, Trash2 } from 'lucide-react';
 import { useRef, useState, type ChangeEvent } from 'react';
 
@@ -58,7 +58,7 @@ export default function Gestion({ phoneNumbers }: GestionProps) {
             <div className="grid gap-6 lg:grid-cols-2">
                 {/* Profile card */}
                 <div className="seven-panel p-5">
-                    <div className="mb-4 text-[10px] tracking-widest text-[#333]">// INFORMATIONS PERSONNELLES</div>
+                    <div className="mb-4 text-[10px] tracking-widest text-muted-foreground/40">// INFORMATIONS PERSONNELLES</div>
 
                     <form onSubmit={submitProfile} encType="multipart/form-data" className="space-y-4">
                         {/* Avatar */}
@@ -72,30 +72,30 @@ export default function Gestion({ phoneNumbers }: GestionProps) {
                                     <img
                                         src={preview}
                                         alt=""
-                                        className="h-16 w-16 rounded-full border border-[#2a2a2a] object-cover"
+                                        className="h-16 w-16 rounded-full border border-[var(--seven-border-bright)] object-cover"
                                     />
                                 ) : (
-                                    <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[#2a2a2a] bg-[#111] text-2xl text-[#333]">
+                                    <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[var(--seven-border-bright)] bg-muted text-2xl text-muted-foreground/40">
                                         {user.username?.[0]?.toUpperCase() ?? '?'}
                                     </div>
                                 )}
                                 <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/60 opacity-0 transition-opacity group-hover:opacity-100">
-                                    <span className="text-[10px] text-[#00ff41]">CHANGER</span>
+                                    <span className="text-[10px] text-primary">CHANGER</span>
                                 </div>
                             </button>
                             <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handlePhoto} />
-                            <div className="text-xs text-[#555]">
-                                <div className="text-[#999]">{user.username}</div>
-                                <div className="text-[10px] tracking-widest text-[#444]">{user.role?.toUpperCase()}</div>
+                            <div className="text-xs text-muted-foreground/80">
+                                <div className="text-sidebar-foreground">{user.username}</div>
+                                <div className="text-[10px] tracking-widest text-muted-foreground/60">{user.role?.toUpperCase()}</div>
                             </div>
                         </div>
 
                         {profileForm.errors.photo_profil && (
-                            <p className="text-[10px] text-[#cc0000]">{profileForm.errors.photo_profil}</p>
+                            <p className="text-[10px] text-destructive">{profileForm.errors.photo_profil}</p>
                         )}
 
                         <div>
-                            <label className="mb-1 block text-[10px] uppercase tracking-widest text-[#555]">Identifiant</label>
+                            <label className="mb-1 block text-[10px] uppercase tracking-widest text-muted-foreground/80">Identifiant</label>
                             <input
                                 type="text"
                                 value={profileForm.data.username}
@@ -103,12 +103,12 @@ export default function Gestion({ phoneNumbers }: GestionProps) {
                                 className="seven-input w-full px-3 py-2 text-sm"
                             />
                             {profileForm.errors.username && (
-                                <p className="mt-1 text-[10px] text-[#cc0000]">{profileForm.errors.username}</p>
+                                <p className="mt-1 text-[10px] text-destructive">{profileForm.errors.username}</p>
                             )}
                         </div>
 
                         <div>
-                            <label className="mb-1 block text-[10px] uppercase tracking-widest text-[#555]">Groupe / Gang</label>
+                            <label className="mb-1 block text-[10px] uppercase tracking-widest text-muted-foreground/80">Groupe / Gang</label>
                             <input
                                 type="text"
                                 value={profileForm.data.groupe}
@@ -116,7 +116,7 @@ export default function Gestion({ phoneNumbers }: GestionProps) {
                                 className="seven-input w-full px-3 py-2 text-sm"
                             />
                             {profileForm.errors.groupe && (
-                                <p className="mt-1 text-[10px] text-[#cc0000]">{profileForm.errors.groupe}</p>
+                                <p className="mt-1 text-[10px] text-destructive">{profileForm.errors.groupe}</p>
                             )}
                         </div>
 
@@ -132,7 +132,7 @@ export default function Gestion({ phoneNumbers }: GestionProps) {
 
                 {/* Phone numbers */}
                 <div className="seven-panel p-5">
-                    <div className="mb-4 text-[10px] tracking-widest text-[#333]">// NUMÉROS DE CONTACT</div>
+                    <div className="mb-4 text-[10px] tracking-widest text-muted-foreground/40">// NUMÉROS DE CONTACT</div>
 
                     <form onSubmit={submitPhone} className="mb-4">
                         <div className="flex gap-2">
@@ -145,7 +145,7 @@ export default function Gestion({ phoneNumbers }: GestionProps) {
                                     placeholder="Numéro"
                                 />
                                 {phoneForm.errors.numero && (
-                                    <p className="mt-1 text-[10px] text-[#cc0000]">{phoneForm.errors.numero}</p>
+                                    <p className="mt-1 text-[10px] text-destructive">{phoneForm.errors.numero}</p>
                                 )}
                             </div>
                             <div className="w-28">
@@ -168,23 +168,23 @@ export default function Gestion({ phoneNumbers }: GestionProps) {
                     </form>
 
                     {phoneNumbers.length === 0 ? (
-                        <div className="py-6 text-center text-xs text-[#333]">Aucun numéro enregistré</div>
+                        <div className="py-6 text-center text-xs text-muted-foreground/40">Aucun numéro enregistré</div>
                     ) : (
                         <div className="space-y-2">
                             {phoneNumbers.map((phone) => (
                                 <div
                                     key={phone.id}
-                                    className="flex items-center justify-between border border-[#1a1a1a] bg-[#0a0a0a] px-3 py-2"
+                                    className="flex items-center justify-between border border-[var(--sidebar-border)] bg-[var(--seven-input-bg)] px-3 py-2"
                                 >
                                     <div>
-                                        <span className="text-sm text-[#ccc]">{phone.numero}</span>
+                                        <span className="text-sm text-foreground">{phone.numero}</span>
                                         {phone.label && (
-                                            <span className="ml-2 text-[10px] text-[#555]">{phone.label}</span>
+                                            <span className="ml-2 text-[10px] text-muted-foreground/80">{phone.label}</span>
                                         )}
                                     </div>
                                     <button
                                         onClick={() => deletePhone(phone.id)}
-                                        className="cursor-pointer text-[#333] transition-colors hover:text-[#cc0000]"
+                                        className="cursor-pointer text-muted-foreground/40 transition-colors hover:text-destructive"
                                     >
                                         <Trash2 size={13} />
                                     </button>

@@ -90,8 +90,12 @@
     --seven-dark: #080808;
     --seven-darker: #050505;
     --seven-panel: #0d0d0d;
+    --seven-input-bg: #0a0a0a;
     --seven-border: #1e1e1e;
     --seven-border-bright: #2a2a2a;
+    --seven-subtle: #1a1a1a;
+    --seven-dim: #333333;
+    --seven-warning: #ffaa00;
     --seven-text: #c8c8c8;
     --seven-text-dim: #666666;
 }

@@ -1,4 +1,4 @@
-import { Head, router } from '@inertiajs/react';
+﻿import { Head, router } from '@inertiajs/react';
 import { Minus, Plus, ShoppingCart } from 'lucide-react';
 import { useState } from 'react';
 
@@ -15,8 +15,8 @@ export default function Achat({ items }: AchatProps) {
             <Head title="Rachat — Seven" />
 
             {items.length === 0 ? (
-                <div className="flex h-48 items-center justify-center border border-[#1a1a1a] bg-[#0d0d0d]">
-                    <span className="text-xs text-[#333]">// AUCUN ARTICLE EN RACHAT</span>
+                <div className="flex h-48 items-center justify-center border border-[var(--sidebar-border)] bg-[var(--seven-panel)]">
+                    <span className="text-xs text-muted-foreground/40">// AUCUN ARTICLE EN RACHAT</span>
                 </div>
             ) : (
                 <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -52,15 +52,15 @@ function ItemCard({ item }: { item: Item }) {
 
     return (
         <div className="seven-panel fade-in flex flex-col">
-            <div className="relative h-36 overflow-hidden bg-[#0a0a0a]">
+            <div className="relative h-36 overflow-hidden bg-[var(--seven-input-bg)]">
                 {item.image_url ? (
                     <img src={item.image_url} alt={item.nom} className="h-full w-full object-cover opacity-80" />
                 ) : (
                     <div className="flex h-full items-center justify-center">
-                        <span className="text-3xl text-[#1a1a1a]">?</span>
+                        <span className="text-3xl text-[var(--seven-subtle)]">?</span>
                     </div>
                 )}
-                <div className="absolute left-2 top-2 border border-[#cc0000] px-2 py-0.5 text-[10px] uppercase tracking-widest text-[#cc0000]">
+                <div className="absolute left-2 top-2 border border-destructive px-2 py-0.5 text-[10px] uppercase tracking-widest text-destructive">
                     RACHAT
                 </div>
             </div>
@@ -74,23 +74,23 @@ function ItemCard({ item }: { item: Item }) {
                     ))}
                 </div>
 
-                <h3 className="text-sm font-bold uppercase tracking-widest text-[#ccc]">{item.nom}</h3>
+                <h3 className="text-sm font-bold uppercase tracking-widest text-foreground">{item.nom}</h3>
                 {item.description && (
-                    <p className="mt-1 text-[11px] leading-relaxed text-[#555]">{item.description}</p>
+                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground/80">{item.description}</p>
                 )}
 
                 <div className="mt-auto pt-3">
-                    <div className="mb-3 flex items-center justify-between border-t border-[#1a1a1a] pt-3">
+                    <div className="mb-3 flex items-center justify-between border-t border-[var(--sidebar-border)] pt-3">
                         <div>
-                            <div className="text-[10px] text-[#444]">ON RACHÈTE À</div>
-                            <div className="text-lg font-bold text-[#00ff41]">
+                            <div className="text-[10px] text-muted-foreground/60">ON RACHÈTE À</div>
+                            <div className="text-lg font-bold text-primary">
                                 {item.prix_achat ? `$${Number(item.prix_achat).toLocaleString()}` : 'Sur devis'}
                             </div>
                         </div>
                         {quantite > 1 && item.prix_achat && (
                             <div className="text-right">
-                                <div className="text-[10px] text-[#444]">ESTIMATION</div>
-                                <div className="text-sm font-bold text-[#00ff41]">
+                                <div className="text-[10px] text-muted-foreground/60">ESTIMATION</div>
+                                <div className="text-sm font-bold text-primary">
                                     ${(Number(item.prix_achat) * quantite).toLocaleString()}
                                 </div>
                             </div>
@@ -98,11 +98,11 @@ function ItemCard({ item }: { item: Item }) {
                     </div>
 
                     <div className="flex items-center gap-2">
-                        <div className="flex items-center border border-[#1e1e1e]">
+                        <div className="flex items-center border border-border">
                             <button
                                 type="button"
                                 onClick={dec}
-                                className="cursor-pointer px-2 py-1.5 text-[#555] transition-colors hover:bg-[#111] hover:text-[#ccc]"
+                                className="cursor-pointer px-2 py-1.5 text-muted-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
                             >
                                 <Minus size={12} />
                             </button>
@@ -111,12 +111,12 @@ function ItemCard({ item }: { item: Item }) {
                                 min={1}
                                 value={quantite}
                                 onChange={(e) => setQuantite(Math.max(1, Number(e.target.value) || 1))}
-                                className="w-10 bg-transparent py-1.5 text-center text-sm text-[#ccc] focus:outline-none"
+                                className="w-10 bg-transparent py-1.5 text-center text-sm text-foreground focus:outline-none"
                             />
                             <button
                                 type="button"
                                 onClick={inc}
-                                className="cursor-pointer px-2 py-1.5 text-[#555] transition-colors hover:bg-[#111] hover:text-[#ccc]"
+                                className="cursor-pointer px-2 py-1.5 text-muted-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
                             >
                                 <Plus size={12} />
                             </button>
