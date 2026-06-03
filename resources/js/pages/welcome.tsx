@@ -1,5 +1,5 @@
 import { router, usePage } from '@inertiajs/react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import type { SharedData } from '@/types';
 
@@ -7,18 +7,40 @@ export default function Welcome() {
     const { auth } = usePage<SharedData>().props;
     const bufferRef = useRef('');
     const secret = 'seven';
+    const [taps, setTaps] = useState(0);
+    const tapTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+    const destination = auth.user ? '/gestion' : '/login';
+
+    // Clavier : taper "seven"
     useEffect(() => {
         function handleKey(e: KeyboardEvent) {
             bufferRef.current += e.key.toLowerCase();
             bufferRef.current = bufferRef.current.slice(-secret.length);
             if (bufferRef.current === secret) {
-                router.visit(auth.user ? '/gestion' : '/login');
+                router.visit(destination);
             }
         }
         window.addEventListener('keydown', handleKey);
         return () => window.removeEventListener('keydown', handleKey);
-    }, [auth.user]);
+    }, [destination]);
+
+    // Mobile / sans clavier : cliquer 7x sur le logo
+    function handleLogoClick() {
+        const next = taps + 1;
+        setTaps(next);
+
+        if (tapTimerRef.current) clearTimeout(tapTimerRef.current);
+
+        if (next >= 7) {
+            setTaps(0);
+            router.visit(destination);
+            return;
+        }
+
+        // Remet à zéro si on arrête de taper pendant 3 secondes
+        tapTimerRef.current = setTimeout(() => setTaps(0), 3000);
+    }
 
     return (
         <div style={{
@@ -35,16 +57,23 @@ export default function Welcome() {
             <div style={{ maxWidth: '560px', textAlign: 'center' }}>
                 {/* Logo / titre leurre */}
                 <div style={{ marginBottom: '2rem' }}>
-                    <div style={{
-                        width: '60px',
-                        height: '60px',
-                        background: '#222',
-                        borderRadius: '50%',
-                        margin: '0 auto 1rem',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                    }}>
+                    <div
+                        onClick={handleLogoClick}
+                        style={{
+                            width: '60px',
+                            height: '60px',
+                            background: '#222',
+                            borderRadius: '50%',
+                            margin: '0 auto 1rem',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            cursor: 'default',
+                            userSelect: 'none',
+                            transition: 'opacity 0.1s',
+                            opacity: taps > 0 ? 1 - taps * 0.05 : 1,
+                        }}
+                    >
                         <span style={{ color: '#fff', fontSize: '1.4rem', fontWeight: 'bold' }}>S</span>
                     </div>
                     <h1 style={{ fontSize: '1.6rem', fontWeight: 'normal', letterSpacing: '0.05em', color: '#222' }}>
