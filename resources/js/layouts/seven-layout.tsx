@@ -52,7 +52,7 @@ export default function SevenLayout({ children, title }: SevenLayoutProps) {
     return (
         <div className="scanlines flex min-h-screen bg-background">
             {/* Sidebar */}
-            <aside className="flex w-52 shrink-0 flex-col border-r border-[var(--sidebar-border)] bg-sidebar">
+            <aside className="sticky top-0 flex h-screen w-52 shrink-0 flex-col overflow-y-auto border-r border-[var(--sidebar-border)] bg-sidebar">
                 {/* Logo */}
                 <div className="border-b border-[var(--sidebar-border)] px-4 py-5">
                     <div className="text-primary">
