@@ -8,6 +8,7 @@ interface UserRow {
     id: number;
     username: string;
     groupe: string | null;
+    role: 'invite' | 'admin';
     photo_profil_url: string | null;
     phone_numbers: Pick<PhoneNumber, 'numero' | 'label'>[];
     created_at: string;
@@ -80,19 +81,20 @@ export default function AdminUsers({ users }: AdminUsersProps) {
                             </div>
 
                             {/* Actions */}
-                            <div className="flex shrink-0 items-center gap-2">
+                            <div className="flex shrink-0 flex-col items-end gap-1.5">
                                 <button
                                     onClick={() => toggleRole(user.id)}
-                                    title="Promouvoir admin"
-                                    className="cursor-pointer text-muted-foreground/40 transition-colors hover:text-primary"
+                                    className="seven-btn-primary flex items-center gap-1 px-2 py-1 text-[10px]"
                                 >
-                                    <ShieldCheck size={15} />
+                                    <ShieldCheck size={11} />
+                                    {user.role === 'admin' ? 'Rétrograder' : 'Promouvoir admin'}
                                 </button>
                                 <button
                                     onClick={() => deleteUser(user.id)}
-                                    className="cursor-pointer text-muted-foreground/40 transition-colors hover:text-destructive"
+                                    className="seven-btn-danger flex items-center gap-1 px-2 py-1 text-[10px]"
                                 >
-                                    <Trash2 size={15} />
+                                    <Trash2 size={11} />
+                                    Supprimer
                                 </button>
                             </div>
                         </div>

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -14,13 +13,13 @@ class UserController extends Controller
     public function index(): Response
     {
         $users = User::with('phoneNumbers')
-            ->where('role', 'invite')
             ->latest()
             ->get()
             ->map(fn (User $user) => [
                 'id' => $user->id,
                 'username' => $user->username,
                 'groupe' => $user->groupe,
+                'role' => $user->role,
                 'photo_profil_url' => $user->photo_profil_url,
                 'phone_numbers' => $user->phoneNumbers->map(fn ($p) => ['numero' => $p->numero, 'label' => $p->label]),
                 'created_at' => $user->created_at->format('d/m/Y'),
