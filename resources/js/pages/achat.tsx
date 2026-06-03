@@ -46,7 +46,7 @@ function ItemCard({ item }: { item: Item }) {
         router.post(
             route('panier.ajouter', item.id),
             { quantite },
-            { onFinish: () => setLoading(false) },
+            { preserveScroll: true, onFinish: () => setLoading(false) },
         );
     }
 
