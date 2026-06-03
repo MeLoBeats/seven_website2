@@ -46,6 +46,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/commandes', [CommandeController::class, 'index'])->name('admin.commandes');
         Route::post('/commandes/{commande}/valider', [CommandeController::class, 'valider'])->name('admin.commandes.valider');
         Route::post('/commandes/{commande}/refuser', [CommandeController::class, 'refuser'])->name('admin.commandes.refuser');
+        Route::delete('/commandes/{commande}', [CommandeController::class, 'destroy'])->name('admin.commandes.destroy');
 
         Route::get('/items', [ItemController::class, 'index'])->name('admin.items');
         Route::post('/items', [ItemController::class, 'store'])->name('admin.items.store');
