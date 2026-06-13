@@ -289,3 +289,16 @@
 .fade-in {
     animation: fadeInDown 0.2s ease-out;
 }
+
+/* Responsive product grid */
+.product-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+@media (max-width: 640px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}

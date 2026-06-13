@@ -61,7 +61,7 @@ export default function Achat({ items }: AchatProps) {
                             {filteredItems.length} résultat{filteredItems.length !== 1 ? 's' : ''} trouvé{filteredItems.length !== 1 ? 's' : ''}
                         </div>
                     )}
-                    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+                    <div className="product-grid">
                         {filteredItems.map((item) => (
                             <ItemCard key={item.id} item={item} />
                         ))}
