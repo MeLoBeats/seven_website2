@@ -53,81 +53,81 @@
     }
 }
 
-/* === SEVEN DARK NET THEME === */
+/* === 777 HUSTLER MAFIA THEME === */
 :root {
-    --background: #080808;
-    --foreground: #c8c8c8;
-    --card: #0f0f0f;
-    --card-foreground: #c8c8c8;
-    --popover: #0f0f0f;
-    --popover-foreground: #c8c8c8;
-    --primary: #00ff41;
+    --background: #0a0a0a;
+    --foreground: #d8ccc0;
+    --card: #121212;
+    --card-foreground: #d8ccc0;
+    --popover: #121212;
+    --popover-foreground: #d8ccc0;
+    --primary: #d4af37;
     --primary-foreground: #000000;
-    --secondary: #141414;
-    --secondary-foreground: #c8c8c8;
-    --muted: #111111;
+    --secondary: #1a1a1a;
+    --secondary-foreground: #d8ccc0;
+    --muted: #181818;
     --muted-foreground: #666666;
-    --accent: #1a1a1a;
-    --accent-foreground: #00ff41;
+    --accent: #2a2a2a;
+    --accent-foreground: #d4af37;
     --destructive: #cc0000;
     --destructive-foreground: #ffffff;
-    --border: #1e1e1e;
-    --input: #111111;
-    --ring: #00ff41;
+    --border: #2a2a2a;
+    --input: #141414;
+    --ring: #d4af37;
     --radius: 0.125rem;
     --sidebar-background: #050505;
     --sidebar-foreground: #999999;
-    --sidebar-primary: #00ff41;
+    --sidebar-primary: #d4af37;
     --sidebar-primary-foreground: #000000;
-    --sidebar-accent: #111111;
-    --sidebar-accent-foreground: #00ff41;
-    --sidebar-border: #1a1a1a;
-    --sidebar-ring: #00ff41;
+    --sidebar-accent: #1a1a1a;
+    --sidebar-accent-foreground: #d4af37;
+    --sidebar-border: #2a2a2a;
+    --sidebar-ring: #d4af37;
 
-    /* Seven brand colors */
-    --seven-green: #00ff41;
-    --seven-red: #cc0000;
-    --seven-dark: #080808;
-    --seven-darker: #050505;
-    --seven-panel: #0d0d0d;
-    --seven-input-bg: #0a0a0a;
-    --seven-border: #1e1e1e;
-    --seven-border-bright: #2a2a2a;
-    --seven-subtle: #1a1a1a;
-    --seven-dim: #333333;
-    --seven-warning: #ffaa00;
-    --seven-text: #c8c8c8;
-    --seven-text-dim: #666666;
+    /* 777 Hustler brand colors */
+    --hustler-gold: #d4af37;
+    --hustler-dark-gold: #9a8c3a;
+    --hustler-black: #0a0a0a;
+    --hustler-darker: #050505;
+    --hustler-panel: #121212;
+    --hustler-input-bg: #0f0f0f;
+    --hustler-border: #2a2a2a;
+    --hustler-border-bright: #3a3a3a;
+    --hustler-subtle: #1a1a1a;
+    --hustler-dim: #404040;
+    --hustler-red: #cc0000;
+    --hustler-text: #d8ccc0;
+    --hustler-text-dim: #888888;
 }
 
 .dark {
-    --background: #080808;
-    --foreground: #c8c8c8;
-    --card: #0f0f0f;
-    --card-foreground: #c8c8c8;
-    --popover: #0f0f0f;
-    --popover-foreground: #c8c8c8;
-    --primary: #00ff41;
+    --background: #0a0a0a;
+    --foreground: #d8ccc0;
+    --card: #121212;
+    --card-foreground: #d8ccc0;
+    --popover: #121212;
+    --popover-foreground: #d8ccc0;
+    --primary: #d4af37;
     --primary-foreground: #000000;
-    --secondary: #141414;
-    --secondary-foreground: #c8c8c8;
-    --muted: #111111;
+    --secondary: #1a1a1a;
+    --secondary-foreground: #d8ccc0;
+    --muted: #181818;
     --muted-foreground: #666666;
-    --accent: #1a1a1a;
-    --accent-foreground: #00ff41;
+    --accent: #2a2a2a;
+    --accent-foreground: #d4af37;
     --destructive: #cc0000;
     --destructive-foreground: #ffffff;
-    --border: #1e1e1e;
-    --input: #111111;
-    --ring: #00ff41;
+    --border: #2a2a2a;
+    --input: #141414;
+    --ring: #d4af37;
     --sidebar-background: #050505;
     --sidebar-foreground: #999999;
-    --sidebar-primary: #00ff41;
+    --sidebar-primary: #d4af37;
     --sidebar-primary-foreground: #000000;
-    --sidebar-accent: #111111;
-    --sidebar-accent-foreground: #00ff41;
-    --sidebar-border: #1a1a1a;
-    --sidebar-ring: #00ff41;
+    --sidebar-accent: #1a1a1a;
+    --sidebar-accent-foreground: #d4af37;
+    --sidebar-border: #2a2a2a;
+    --sidebar-ring: #d4af37;
 }
 
 @layer base {
@@ -141,8 +141,8 @@
     }
 
     ::selection {
-        background-color: #00ff4133;
-        color: #00ff41;
+        background-color: #d4af3755;
+        color: #d4af37;
     }
 
     ::-webkit-scrollbar {
@@ -151,16 +151,16 @@
     }
 
     ::-webkit-scrollbar-track {
-        background: #080808;
+        background: #0a0a0a;
     }
 
     ::-webkit-scrollbar-thumb {
-        background: #1e1e1e;
+        background: #2a2a2a;
         border-radius: 0;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-        background: #2a2a2a;
+        background: #3a3a3a;
     }
 }
 
@@ -199,35 +199,40 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Seven custom components */
-.seven-panel {
-    background: var(--seven-panel);
-    border: 1px solid var(--seven-border);
+/* Hustler custom components */
+.seven-panel,
+.hustler-panel {
+    background: var(--hustler-panel);
+    border: 1px solid var(--hustler-border);
 }
 
-.seven-panel-bright {
-    background: var(--seven-panel);
-    border: 1px solid var(--seven-border-bright);
+.seven-panel-bright,
+.hustler-panel-bright {
+    background: var(--hustler-panel);
+    border: 1px solid var(--hustler-border-bright);
 }
 
-.seven-input {
-    background: #0a0a0a;
-    border: 1px solid var(--seven-border);
-    color: var(--seven-text);
+.seven-input,
+.hustler-input {
+    background: var(--hustler-input-bg);
+    border: 1px solid var(--hustler-border);
+    color: var(--hustler-text);
     font-family: var(--font-mono);
     outline: none;
     transition: border-color 0.15s;
 }
 
-.seven-input:focus {
-    border-color: var(--seven-green);
-    box-shadow: 0 0 0 1px var(--seven-green);
+.seven-input:focus,
+.hustler-input:focus {
+    border-color: var(--hustler-gold);
+    box-shadow: 0 0 0 1px var(--hustler-gold);
 }
 
-.seven-btn-primary {
+.seven-btn-primary,
+.hustler-btn-primary {
     background: transparent;
-    border: 1px solid var(--seven-green);
-    color: var(--seven-green);
+    border: 1px solid var(--hustler-gold);
+    color: var(--hustler-gold);
     font-family: var(--font-mono);
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -235,15 +240,17 @@
     cursor: pointer;
 }
 
-.seven-btn-primary:hover {
-    background: var(--seven-green);
+.seven-btn-primary:hover,
+.hustler-btn-primary:hover {
+    background: var(--hustler-gold);
     color: #000;
 }
 
-.seven-btn-danger {
+.seven-btn-danger,
+.hustler-btn-danger {
     background: transparent;
-    border: 1px solid var(--seven-red);
-    color: var(--seven-red);
+    border: 1px solid var(--hustler-red);
+    color: var(--hustler-red);
     font-family: var(--font-mono);
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -251,12 +258,14 @@
     cursor: pointer;
 }
 
-.seven-btn-danger:hover {
-    background: var(--seven-red);
+.seven-btn-danger:hover,
+.hustler-btn-danger:hover {
+    background: var(--hustler-red);
     color: #fff;
 }
 
-.seven-tag {
+.seven-tag,
+.hustler-tag {
     font-size: 0.65rem;
     padding: 1px 6px;
     border: 1px solid currentColor;
@@ -268,12 +277,13 @@
 .cursor-blink::after {
     content: '_';
     animation: blink 1s step-end infinite;
-    color: var(--seven-green);
+    color: var(--hustler-gold);
 }
 
+.gold-glow,
 .green-glow {
-    text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
-    color: var(--seven-green);
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+    color: var(--hustler-gold);
 }
 
 .fade-in {

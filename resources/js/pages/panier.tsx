@@ -44,7 +44,7 @@ export default function Panier({ panier }: { panier: PanierData }) {
 
     return (
         <SevenLayout title="Mon offre de vente">
-            <Head title="Mon offre — Seven" />
+            <Head title="Mon offre — 777 Hustler" />
 
             {panier.items.length === 0 ? (
                 <div className="flex h-48 flex-col items-center justify-center gap-3 border border-[var(--sidebar-border)] bg-[var(--seven-panel)]">
@@ -131,7 +131,7 @@ export default function Panier({ panier }: { panier: PanierData }) {
                             <div className="mb-3 text-[10px] tracking-widest text-muted-foreground/40">// ESTIMATION</div>
 
                             <div className="mb-3 flex items-center justify-between border-b border-[var(--sidebar-border)] pb-3">
-                                <span className="text-xs text-muted-foreground/80">Seven vous paiera</span>
+                                <span className="text-xs text-muted-foreground/80">777 Hustler vous paiera</span>
                                 <span className="text-xl font-bold text-primary">${total.toLocaleString()}</span>
                             </div>
 

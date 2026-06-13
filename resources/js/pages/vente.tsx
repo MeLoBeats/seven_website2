@@ -10,7 +10,7 @@ interface VenteProps {
 export default function Vente({ items }: VenteProps) {
     return (
         <SevenLayout title="Catalogue de vente">
-            <Head title="Vente — Seven" />
+            <Head title="Vente — 777 Hustler" />
 
             <div className="mb-4 border border-[var(--sidebar-border)] bg-[var(--seven-panel)] px-4 py-3">
                 <p className="text-xs text-muted-foreground/80">

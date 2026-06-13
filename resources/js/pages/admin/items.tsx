@@ -37,7 +37,7 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
     const [showForm, setShowForm] = useState(false);
     const [showTagForm, setShowTagForm] = useState(false);
 
-    const tagForm = useForm({ nom: '', couleur: '#00ff41' });
+    const tagForm = useForm({ nom: '', couleur: '#d4af37' });
     const itemForm = useForm<ItemForm>(defaultForm);
 
     function openCreate() {
@@ -110,7 +110,7 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
 
     return (
         <SevenLayout title="Gestion des articles">
-            <Head title="Articles — Admin Seven" />
+            <Head title="Articles — Admin 777 Hustler" />
 
             {/* Tags section */}
             <div className="mb-6 seven-panel p-4">

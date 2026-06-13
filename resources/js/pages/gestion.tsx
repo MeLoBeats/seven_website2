@@ -53,7 +53,7 @@ export default function Gestion({ phoneNumbers }: GestionProps) {
 
     return (
         <SevenLayout title="Gestion du profil">
-            <Head title="Gestion — Seven" />
+            <Head title="Gestion — 777 Hustler" />
 
             <div className="grid gap-6 lg:grid-cols-2">
                 {/* Profile card */}

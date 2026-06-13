@@ -76,7 +76,7 @@ export default function AdminCommandes({ commandes, nb_en_attente, stats, groupe
 
     return (
         <SevenLayout title="Commandes">
-            <Head title="Commandes — Admin Seven" />
+            <Head title="Commandes — Admin 777 Hustler" />
 
             {/* Stats totaux */}
             <div className="mb-5 grid grid-cols-2 gap-3 sm:grid-cols-4">

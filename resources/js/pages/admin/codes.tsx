@@ -46,7 +46,7 @@ export default function AdminCodes({ codes, nb_disponibles }: Props) {
 
     return (
         <SevenLayout title="Codes d'affiliation">
-            <Head title="Codes — Admin Seven" />
+            <Head title="Codes — Admin 777 Hustler" />
 
             {/* Stats */}
             <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-3">

@@ -12,7 +12,7 @@ interface AchatProps {
 export default function Achat({ items }: AchatProps) {
     return (
         <SevenLayout title="Catalogue de rachat">
-            <Head title="Rachat — Seven" />
+            <Head title="Rachat — 777 Hustler" />
 
             {items.length === 0 ? (
                 <div className="flex h-48 items-center justify-center border border-[var(--sidebar-border)] bg-[var(--seven-panel)]">

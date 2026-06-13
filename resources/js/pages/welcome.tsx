@@ -6,13 +6,13 @@ import type { SharedData } from '@/types';
 export default function Welcome() {
     const { auth } = usePage<SharedData>().props;
     const bufferRef = useRef('');
-    const secret = 'seven';
+    const secret = '777';
     const [taps, setTaps] = useState(0);
     const tapTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const destination = auth.user ? '/gestion' : '/login';
 
-    // Clavier : taper "seven"
+    // Clavier : taper "777"
     useEffect(() => {
         function handleKey(e: KeyboardEvent) {
             bufferRef.current += e.key.toLowerCase();
@@ -43,90 +43,90 @@ export default function Welcome() {
     }
 
     return (
-        <div style={{
-            minHeight: '100vh',
-            background: '#f5f5f0',
-            fontFamily: 'Georgia, serif',
-            color: '#333',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '2rem',
-        }}>
+        <div
+            style={{
+                minHeight: '100vh',
+                background: '#0a0a0a',
+                fontFamily: 'Georgia, serif',
+                color: '#d8ccc0',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '2rem',
+            }}
+        >
             <div style={{ maxWidth: '560px', textAlign: 'center' }}>
-                {/* Logo / titre leurre */}
-                <div style={{ marginBottom: '2rem' }}>
+                {/* Logo */}
+                <div style={{ marginBottom: '3rem' }}>
                     <div
                         onClick={handleLogoClick}
                         style={{
-                            width: '60px',
-                            height: '60px',
-                            background: '#222',
-                            borderRadius: '50%',
-                            margin: '0 auto 1rem',
+                            width: '80px',
+                            height: '80px',
+                            margin: '0 auto 1.5rem',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            cursor: 'default',
+                            cursor: 'pointer',
                             userSelect: 'none',
-                            transition: 'opacity 0.1s',
-                            opacity: taps > 0 ? 1 - taps * 0.05 : 1,
+                            transition: 'opacity 0.15s',
+                            opacity: taps > 0 ? Math.max(0.5, 1 - taps * 0.08) : 1,
                         }}
                     >
-                        <span style={{ color: '#fff', fontSize: '1.4rem', fontWeight: 'bold' }}>S</span>
+                        <img src="/logo.png" alt="777 Hustler" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                     </div>
-                    <h1 style={{ fontSize: '1.6rem', fontWeight: 'normal', letterSpacing: '0.05em', color: '#222' }}>
-                        Santos Consulting
+                    <h1 style={{ fontSize: '2.2rem', fontWeight: 'bold', letterSpacing: '0.08em', color: '#d4af37', marginBottom: '0.5rem' }}>
+                        777 HUSTLER
                     </h1>
-                    <p style={{ fontSize: '0.85rem', color: '#888', marginTop: '0.25rem', letterSpacing: '0.1em' }}>
-                        MANAGEMENT & ADVISORY
-                    </p>
+                    <p style={{ fontSize: '0.9rem', color: '#999', marginTop: '0.25rem', letterSpacing: '0.15em' }}>ORGANIZATION</p>
                 </div>
 
-                {/* Contenu leurre */}
-                <div style={{
-                    borderTop: '1px solid #ddd',
-                    borderBottom: '1px solid #ddd',
-                    padding: '2rem 0',
-                    marginBottom: '2rem',
-                }}>
-                    <p style={{ fontSize: '1rem', lineHeight: '1.8', color: '#555' }}>
-                        Notre cabinet accompagne les entreprises et particuliers dans leurs
-                        projets de développement stratégique, de restructuration et de gestion
-                        d'actifs en Amérique latine et aux Caraïbes.
+                {/* Contenu */}
+                <div
+                    style={{
+                        borderTop: '1px solid #2a2a2a',
+                        borderBottom: '1px solid #2a2a2a',
+                        padding: '2.5rem 0',
+                        marginBottom: '2rem',
+                    }}
+                >
+                    <p style={{ fontSize: '1rem', lineHeight: '1.8', color: '#b8b0a0' }}>
+                        Bienvenue dans la famille. Ici, on achète, on vend, on bouge. Que tu sois client ou partenaire, 777 Hustler te traite comme un roi.
                     </p>
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.5rem', marginBottom: '2.5rem' }}>
                     {[
-                        { label: 'Conseil', desc: 'Stratégie & planification' },
-                        { label: 'Finance', desc: 'Gestion de patrimoine' },
-                        { label: 'Audit', desc: 'Conformité & contrôle' },
+                        { label: 'RACHAT', desc: 'On achète tes biens' },
+                        { label: 'VENTE', desc: 'On te proprose des offres' },
+                        { label: 'SERVICES', desc: 'On soutient la famille' },
                     ].map((s) => (
                         <div key={s.label} style={{ textAlign: 'center' }}>
-                            <div style={{ fontSize: '0.7rem', fontWeight: 'bold', letterSpacing: '0.15em', color: '#222', marginBottom: '0.25rem' }}>
-                                {s.label.toUpperCase()}
+                            <div style={{ fontSize: '0.7rem', fontWeight: 'bold', letterSpacing: '0.15em', color: '#d4af37', marginBottom: '0.25rem' }}>
+                                {s.label}
                             </div>
                             <div style={{ fontSize: '0.75rem', color: '#888' }}>{s.desc}</div>
                         </div>
                     ))}
                 </div>
 
-                <p style={{ fontSize: '0.7rem', color: '#aaa', letterSpacing: '0.05em' }}>
-                    Pour toute demande de contact, merci de nous écrire par courrier.
+                <p style={{ fontSize: '0.7rem', color: '#666', letterSpacing: '0.05em' }}>
+                    Une question ? Contacte-nous directement. On répond vite.
                 </p>
             </div>
 
             {/* Footer */}
-            <footer style={{
-                position: 'absolute',
-                bottom: '1.5rem',
-                fontSize: '0.65rem',
-                color: '#ccc',
-                letterSpacing: '0.05em',
-            }}>
-                © 2025 Santos Consulting S.A. — Tous droits réservés
+            <footer
+                style={{
+                    position: 'absolute',
+                    bottom: '1.5rem',
+                    fontSize: '0.65rem',
+                    color: '#555',
+                    letterSpacing: '0.05em',
+                }}
+            >
+                © 2025 777 Hustler — Tous droits réservés
             </footer>
         </div>
     );

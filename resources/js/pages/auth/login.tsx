@@ -14,7 +14,7 @@ export default function Login() {
 
     return (
         <div className="scanlines flex min-h-screen items-center justify-center bg-background">
-            <Head title="Connexion — Seven" />
+            <Head title="Connexion — 777 Hustler" />
 
             <div className="w-full max-w-sm px-4">
                 {/* Header */}

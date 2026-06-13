@@ -30,7 +30,7 @@ export default function AdminUsers({ users }: AdminUsersProps) {
 
     return (
         <SevenLayout title="Gestion des invités">
-            <Head title="Invités — Admin Seven" />
+            <Head title="Invités — Admin 777 Hustler" />
 
             <div className="mb-4 text-xs text-muted-foreground/80">
                 <span className="text-primary">{users.length}</span> invité{users.length !== 1 ? 's' : ''} enregistré{users.length !== 1 ? 's' : ''}

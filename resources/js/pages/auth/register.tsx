@@ -19,7 +19,7 @@ export default function Register() {
 
     return (
         <div className="scanlines flex min-h-screen items-center justify-center bg-background">
-            <Head title="Inscription — Seven" />
+            <Head title="Inscription — 777 Hustler" />
 
             <div className="w-full max-w-sm px-4">
                 <div className="mb-8 text-center">
