@@ -64,7 +64,7 @@ export default function Panier({ panier }: { panier: PanierData }) {
                                 {/* Thumbnail */}
                                 <div className="h-12 w-12 shrink-0 overflow-hidden border border-[var(--sidebar-border)] bg-[var(--seven-input-bg)]">
                                     {ci.item.image_url ? (
-                                        <img src={ci.item.image_url} alt="" className="h-full w-full object-cover opacity-80" />
+                                        <img src={ci.item.image_url} alt="" className="h-full w-full object-cover object-center opacity-90" />
                                     ) : (
                                         <div className="flex h-full items-center justify-center text-xl text-[var(--seven-subtle)]">?</div>
                                     )}

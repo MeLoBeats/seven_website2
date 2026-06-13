@@ -72,7 +72,7 @@ export default function Gestion({ phoneNumbers }: GestionProps) {
                                     <img
                                         src={preview}
                                         alt=""
-                                        className="h-16 w-16 rounded-full border border-[var(--seven-border-bright)] object-cover"
+                                        className="h-16 w-16 rounded-full border border-[var(--seven-border-bright)] object-cover object-center"
                                     />
                                 ) : (
                                     <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[var(--seven-border-bright)] bg-muted text-2xl text-muted-foreground/40">

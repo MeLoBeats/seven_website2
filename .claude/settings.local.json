@@ -7,7 +7,8 @@
       "Bash(vendor/bin/pint --dirty --format agent)",
       "Bash(npm run *)",
       "Bash(grep -rn \"#[0-9a-fA-F]\\\\{3,6\\\\}\" resources/js --include=\"*.tsx\")",
-      "Bash(grep -v \"//\\\\|/\\\\*\")"
+      "Bash(grep -v \"//\\\\|/\\\\*\")",
+      "Bash(git commit -m 'fix: improve image framing across all pages *)"
     ]
   }
 }

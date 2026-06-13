@@ -95,12 +95,16 @@ function ItemCard({ item }: { item: Item }) {
 
     return (
         <div className="seven-panel fade-in flex flex-col">
-            <div className="relative h-36 overflow-hidden bg-[var(--seven-input-bg)]">
+            <div className="relative h-48 overflow-hidden bg-[var(--seven-input-bg)]">
                 {item.image_url ? (
-                    <img src={item.image_url} alt={item.nom} className="h-full w-full object-cover opacity-80" />
+                    <img
+                        src={item.image_url}
+                        alt={item.nom}
+                        className="h-full w-full object-cover object-center opacity-90"
+                    />
                 ) : (
                     <div className="flex h-full items-center justify-center">
-                        <span className="text-3xl text-[var(--seven-subtle)]">?</span>
+                        <span className="text-4xl text-[var(--seven-subtle)]">?</span>
                     </div>
                 )}
                 <div className="absolute left-2 top-2 border border-destructive px-2 py-0.5 text-[10px] uppercase tracking-widest text-destructive">

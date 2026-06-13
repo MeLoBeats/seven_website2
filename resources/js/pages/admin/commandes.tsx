@@ -191,7 +191,7 @@ function CommandeCard({ commande: c }: { commande: Commande }) {
             <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
                 <div className="flex items-center gap-3">
                     {c.user.photo_profil_url ? (
-                        <img src={c.user.photo_profil_url} alt="" className="h-9 w-9 rounded-full border border-[var(--seven-border-bright)] object-cover" />
+                        <img src={c.user.photo_profil_url} alt="" className="h-9 w-9 rounded-full border border-[var(--seven-border-bright)] object-cover object-center" />
                     ) : (
                         <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--seven-border-bright)] bg-muted text-muted-foreground/60">
                             {c.user.username[0]?.toUpperCase()}

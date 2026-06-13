@@ -49,7 +49,7 @@ export default function AdminUsers({ users }: AdminUsersProps) {
                                 <img
                                     src={user.photo_profil_url}
                                     alt=""
-                                    className="h-10 w-10 shrink-0 rounded-full border border-[var(--seven-border-bright)] object-cover"
+                                    className="h-10 w-10 shrink-0 rounded-full border border-[var(--seven-border-bright)] object-cover object-center"
                                 />
                             ) : (
                                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--seven-border-bright)] bg-muted text-muted-foreground/60">

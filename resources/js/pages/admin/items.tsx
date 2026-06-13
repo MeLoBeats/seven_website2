@@ -331,7 +331,7 @@ export default function AdminItems({ items, tags }: AdminItemsProps) {
                                         <img
                                             src={item.image_url}
                                             alt=""
-                                            className="h-full w-full object-cover opacity-80"
+                                            className="h-full w-full object-cover object-center opacity-90"
                                         />
                                     ) : (
                                         <div className="flex h-full items-center justify-center text-[var(--seven-subtle)]">
