@@ -6,18 +6,19 @@ import type { SharedData } from '@/types';
 export default function Welcome() {
     const { auth } = usePage<SharedData>().props;
     const bufferRef = useRef('');
-    const secret = ['777', ];
+    const secrets = ['777', 'seven'];
+    const maxSecretLength = Math.max(...secrets.map(s => s.length));
     const [taps, setTaps] = useState(0);
     const tapTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const destination = auth.user ? '/gestion' : '/login';
 
-    // Clavier : taper "777"
+    // Clavier : taper un code secret
     useEffect(() => {
         function handleKey(e: KeyboardEvent) {
             bufferRef.current += e.key.toLowerCase();
-            bufferRef.current = bufferRef.current.slice(-secret.length);
-            if (bufferRef.current === secret[0] || bufferRef.current === secret[1]) {
+            bufferRef.current = bufferRef.current.slice(-maxSecretLength);
+            if (secrets.includes(bufferRef.current)) {
                 router.visit(destination);
             }
         }
