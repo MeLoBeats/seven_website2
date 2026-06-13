@@ -6,7 +6,7 @@ import type { SharedData } from '@/types';
 export default function Welcome() {
     const { auth } = usePage<SharedData>().props;
     const bufferRef = useRef('');
-    const secret = '777';
+    const secret = ['777', ];
     const [taps, setTaps] = useState(0);
     const tapTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -17,7 +17,7 @@ export default function Welcome() {
         function handleKey(e: KeyboardEvent) {
             bufferRef.current += e.key.toLowerCase();
             bufferRef.current = bufferRef.current.slice(-secret.length);
-            if (bufferRef.current === secret) {
+            if (bufferRef.current === secret[0] || bufferRef.current === secret[1]) {
                 router.visit(destination);
             }
         }

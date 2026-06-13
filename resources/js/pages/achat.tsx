@@ -100,7 +100,7 @@ function ItemCard({ item }: { item: Item }) {
                     <img
                         src={item.image_url}
                         alt={item.nom}
-                        className="h-full w-full object-cover object-center opacity-90"
+                        className="h-full w-full object-contain object-center opacity-90"
                     />
                 ) : (
                     <div className="flex h-full items-center justify-center">
