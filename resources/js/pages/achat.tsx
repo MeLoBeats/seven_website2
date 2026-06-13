@@ -1,6 +1,6 @@
 ﻿import { Head, router } from '@inertiajs/react';
-import { Minus, Plus, ShoppingCart } from 'lucide-react';
-import { useState } from 'react';
+import { Minus, Plus, Search, ShoppingCart, X } from 'lucide-react';
+import { useState, useMemo } from 'react';
 
 import SevenLayout from '@/layouts/seven-layout';
 import type { Item } from '@/types';
@@ -10,20 +10,63 @@ interface AchatProps {
 }
 
 export default function Achat({ items }: AchatProps) {
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const filteredItems = useMemo(() => {
+        if (!searchTerm.trim()) return items;
+        const term = searchTerm.toLowerCase();
+        return items.filter((item) =>
+            item.nom.toLowerCase().includes(term) ||
+            item.description?.toLowerCase().includes(term) ||
+            item.tags.some((tag) => tag.nom.toLowerCase().includes(term))
+        );
+    }, [items, searchTerm]);
+
     return (
         <SevenLayout title="Catalogue de rachat">
             <Head title="Rachat — 777 Hustler" />
 
-            {items.length === 0 ? (
+            {/* Barre de recherche */}
+            <div className="mb-6 relative">
+                <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground/40" size={16} />
+                    <input
+                        type="text"
+                        placeholder="Rechercher un article..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="seven-input w-full pl-10 pr-10 py-2.5 text-sm"
+                    />
+                    {searchTerm && (
+                        <button
+                            onClick={() => setSearchTerm('')}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground/40 hover:text-foreground transition-colors"
+                        >
+                            <X size={16} />
+                        </button>
+                    )}
+                </div>
+            </div>
+
+            {filteredItems.length === 0 ? (
                 <div className="flex h-48 items-center justify-center border border-[var(--sidebar-border)] bg-[var(--seven-panel)]">
-                    <span className="text-xs text-muted-foreground/40">// AUCUN ARTICLE EN RACHAT</span>
+                    <span className="text-xs text-muted-foreground/40">
+                        {items.length === 0 ? '// AUCUN ARTICLE EN RACHAT' : '// AUCUN RÉSULTAT'}
+                    </span>
                 </div>
             ) : (
-                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                    {items.map((item) => (
-                        <ItemCard key={item.id} item={item} />
-                    ))}
-                </div>
+                <>
+                    {searchTerm && (
+                        <div className="mb-4 text-xs text-muted-foreground/60">
+                            {filteredItems.length} résultat{filteredItems.length !== 1 ? 's' : ''} trouvé{filteredItems.length !== 1 ? 's' : ''}
+                        </div>
+                    )}
+                    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+                        {filteredItems.map((item) => (
+                            <ItemCard key={item.id} item={item} />
+                        ))}
+                    </div>
+                </>
             )}
         </SevenLayout>
     );
