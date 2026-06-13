@@ -46,7 +46,7 @@ class DiscordActionController extends Controller
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>{$titre} — Seven</title>
+            <title>{$titre} — 777 Hustler</title>
             <style>
                 * { margin: 0; padding: 0; box-sizing: border-box; }
                 body { background: #080808; color: #c8c8c8; font-family: 'Courier New', monospace;
@@ -61,7 +61,7 @@ class DiscordActionController extends Controller
             <div class="box">
                 <div class="title">{$titre}</div>
                 <div class="msg">{$message}</div>
-                <div class="footer">SEVEN NETWORK</div>
+                <div class="footer">777 HUSTLER ORGANIZATION</div>
             </div>
         </body>
         </html>

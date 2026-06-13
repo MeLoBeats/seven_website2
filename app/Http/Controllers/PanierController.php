@@ -119,7 +119,7 @@ class PanierController extends Controller
         $payload = [
             'content' => '<@&1502487400159510558>',
             'embeds' => [[
-                'title' => '🛒 Nouvelle commande — Seven',
+                'title' => '🛒 Nouvelle commande — 777 Hustler',
                 'url' => $commandesUrl,
                 'color' => 0xCC0000,
                 'fields' => [
@@ -129,7 +129,7 @@ class PanierController extends Controller
                     ['name' => 'Articles', 'value' => $lignes ?: '—', 'inline' => false],
                     ['name' => 'Note', 'value' => $commande->note ?: '—', 'inline' => false],
                 ],
-                'footer' => ['text' => 'Seven Network • Cliquez le titre pour traiter'],
+                'footer' => ['text' => '777 Hustler Organization • Cliquez le titre pour traiter'],
                 'timestamp' => now()->toIso8601String(),
             ]],
         ];

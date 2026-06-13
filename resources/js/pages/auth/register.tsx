@@ -24,7 +24,7 @@ export default function Register() {
             <div className="w-full max-w-sm px-4">
                 <div className="mb-8 text-center">
                     <div className="mb-1 text-[10px] tracking-[0.4em] text-muted-foreground/40">[ NOUVEAU COMPTE ]</div>
-                    <h1 className="cursor-blink text-2xl font-bold tracking-[0.2em] text-primary">SEVEN</h1>
+                    <h1 className="cursor-blink text-2xl font-bold tracking-[0.2em] text-primary">777 HUSTLER</h1>
                     <div className="mt-1 text-[10px] tracking-widest text-muted-foreground/60">CODE D'AFFILIATION REQUIS</div>
                 </div>
 

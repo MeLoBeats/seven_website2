@@ -14,7 +14,7 @@ export default function Vente({ items }: VenteProps) {
 
             <div className="mb-4 border border-[var(--sidebar-border)] bg-[var(--seven-panel)] px-4 py-3">
                 <p className="text-xs text-muted-foreground/80">
-                    <span className="text-primary">&gt;</span> Vendez vos articles au réseau Seven. Nous rachetons les marchandises listées ci-dessous.
+                    <span className="text-primary">&gt;</span> Vendez vos articles à 777 Hustler. Nous rachetons les marchandises listées ci-dessous.
                 </p>
             </div>
 

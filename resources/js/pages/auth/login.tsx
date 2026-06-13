@@ -20,7 +20,7 @@ export default function Login() {
                 {/* Header */}
                 <div className="mb-8 text-center">
                     <div className="mb-1 text-[10px] tracking-[0.4em] text-muted-foreground/40">[ CONNEXION SÉCURISÉE ]</div>
-                    <h1 className="cursor-blink text-2xl font-bold tracking-[0.2em] text-primary">SEVEN</h1>
+                    <h1 className="cursor-blink text-2xl font-bold tracking-[0.2em] text-primary">777 HUSTLER</h1>
                     <div className="mt-1 text-[10px] tracking-widest text-muted-foreground/60">ACCÈS RESTREINT</div>
                 </div>
 
@@ -84,7 +84,7 @@ export default function Login() {
                 </div>
 
                 <div className="mt-6 text-center text-[9px] tracking-widest text-border">
-                    SEVEN NETWORK — ACCÈS CONTRÔLÉ
+                    777 HUSTLER ORGANIZATION — ACCÈS CONTRÔLÉ
                 </div>
             </div>
         </div>
